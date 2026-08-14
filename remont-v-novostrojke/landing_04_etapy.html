@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Этапы ремонта — Ремонт в новостройке</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="stylesheet" href="landing.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2794e3;
+  --blue-dark:#1684d4;
+  --blue-soft:#ebf5fc;
+  --text:#454545;
+  --muted:#777;
+  --line:#e6e9ec;
+  --card:#f4f5f6;
+  --footer:#111;
+  --white:#fff;
+  --warning:#fff4e6;
+  --warning-line:#ffd9a8;
+  --shadow-sm:0 2px 8px rgba(44,75,98,.06);
+  --shadow-md:0 12px 32px rgba(44,75,98,.10);
+  --shadow-lg:0 24px 60px rgba(44,75,98,.14);
+  --radius:18px;
+  --radius-sm:12px;
+  --max:1160px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:var(--white);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:var(--blue);text-decoration:none;transition:color .2s ease}
+a:hover{color:var(--blue-dark)}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-weight:700;line-height:1.18;letter-spacing:-.01em;margin:0 0 .5em;color:#1a1a1a}
+h2{font-size:clamp(28px,3.4vw,42px);margin-top:1.4em}
+h3{font-size:clamp(20px,2vw,24px);margin-top:1.4em;color:#1a1a1a}
+h4{font-size:18px;margin-top:1.2em}
+p{margin:0 0 1em}
+strong{color:#1a1a1a;font-weight:600}
+ul,ol{margin:0 0 1.2em;padding-left:1.4em}
+li{margin-bottom:.4em}
+blockquote{
+  margin:1.6em 0;
+  padding:18px 22px;
+  background:var(--blue-soft);
+  border-left:4px solid var(--blue);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  color:#1a1a1a;
+  font-size:15px;
+}
+blockquote strong{color:var(--blue-dark)}
+
+/* Topbar */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.topbar__inner{display:flex;align-items:center;justify-content:space-between;height:70px;gap:24px}
+.topbar__logo{display:flex;align-items:center;gap:10px}
+.topbar__logo img{height:38px;width:auto}
+.topbar__logo span{font-weight:700;color:#1a1a1a;font-size:15px;letter-spacing:.02em}
+.topbar__nav{display:flex;align-items:center;gap:6px}
+.topbar__nav a{color:var(--text);font-size:14px;font-weight:500;padding:8px 12px;border-radius:8px;transition:background .2s}
+.topbar__nav a:hover{background:var(--blue-soft);color:var(--blue-dark)}
+.topbar__cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 20px;background:var(--blue);color:#fff;
+  border-radius:30px;font-weight:600;font-size:14px;
+  box-shadow:0 4px 14px rgba(39,148,227,.35);
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.topbar__cta:hover{background:var(--blue-dark);color:#fff;transform:translateY(-1px);box-shadow:0 6px 18px rgba(39,148,227,.45)}
+@media(max-width:900px){.topbar__nav{display:none}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:#0a0e12;color:#fff}
+.hero__media{position:absolute;inset:0;z-index:0}
+.hero__media img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.85) 100%)}
+.hero__inner{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:90px 24px 110px;text-align:left}
+.hero__eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:#9ed1f5;margin-bottom:18px;
+}
+.hero__eyebrow::before{content:"";width:32px;height:1px;background:#9ed1f5}
+.hero h1{font-size:clamp(30px,4.6vw,56px);line-height:1.08;margin:0 0 22px;color:#fff;font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:#7ec5f0}
+.hero__lead{font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(255,255,255,.85);max-width:760px;margin:0 0 30px}
+.hero__meta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:rgba(255,255,255,.78);font-size:14px}
+.hero__meta .dot{width:4px;height:4px;background:rgba(255,255,255,.4);border-radius:50%}
+.hero__meta a{color:#9ed1f5}
+
+/* TOC */
+.toc-wrap{max-width:var(--max);margin:-50px auto 0;padding:0 24px;position:relative;z-index:5}
+.toc{
+  background:#fff;border-radius:var(--radius);
+  box-shadow:var(--shadow-md);
+  padding:22px 26px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+  border:1px solid var(--line);
+}
+.toc__label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.toc a{
+  display:inline-block;padding:8px 14px;border-radius:30px;
+  font-size:13px;font-weight:600;color:var(--text);background:var(--card);
+  transition:background .2s,color .2s;
+}
+.toc a:hover{background:var(--blue);color:#fff}
+
+/* Article layout */
+.article{max-width:var(--max);margin:0 auto;padding:60px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.article__body{max-width:780px;margin:0 auto;font-size:17px;line-height:1.7}
+.article__body h2{margin-top:2.2em;padding-top:.3em;position:relative}
+.article__body h2::before{
+  content:"";display:block;width:48px;height:3px;background:var(--blue);
+  border-radius:2px;margin-bottom:18px;
+}
+.article__body h2 .num{
+  display:inline-block;width:36px;height:36px;line-height:36px;text-align:center;
+  background:var(--blue);color:#fff;border-radius:10px;font-size:15px;font-weight:700;margin-right:14px;
+  vertical-align:middle;transform:translateY(-2px);
+}
+.article__body h3{margin-top:1.8em;font-size:21px;color:#1a1a1a}
+.article__body h3::before{content:"›";color:var(--blue);font-weight:800;margin-right:10px;font-size:26px;line-height:1;vertical-align:-3px}
+.article__body p{margin:0 0 1.1em}
+.article__body ul li::marker{color:var(--blue);font-weight:700}
+
+.lead-block{
+  background:linear-gradient(135deg,#f7fbfe 0%,#eaf5fc 100%);
+  border-radius:var(--radius);padding:28px 32px;margin:0 0 40px;
+  font-size:16.5px;line-height:1.65;color:#2a2a2a;border:1px solid #d8eaf7;
+}
+.lead-block p{margin:0 0 12px}
+.lead-block p:last-child{margin:0}
+
+.figure{margin:32px -8px 36px}
+.figure img{width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow-md);aspect-ratio:16/9;object-fit:cover}
+.figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;padding:0 8px;font-style:italic}
+
+/* Step cards (С чего начать) */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:28px 0 8px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.step::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-dark));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.step:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#cfe5f7}
+.step:hover::before{transform:scaleX(1)}
+.step__num{display:inline-block;width:40px;height:40px;line-height:40px;text-align:center;background:var(--blue-soft);color:var(--blue-dark);font-weight:800;font-size:18px;border-radius:12px;margin-bottom:14px}
+.step h4{margin:0 0 8px;font-size:17px;color:#1a1a1a}
+.step p{margin:0;font-size:14px;line-height:1.55;color:#5a5a5a}
+@media(max-width:780px){.steps{grid-template-columns:1fr}}
+
+/* Timeline (Этапы) */
+.timeline{margin:36px 0 12px;position:relative;padding-left:8px}
+.timeline::before{content:"";position:absolute;left:24px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--blue) 0%,#cfe5f7 100%);border-radius:2px}
+.tl-item{position:relative;padding:0 0 28px 64px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:14px;top:8px;width:22px;height:22px;border-radius:50%;
+  background:#fff;border:3px solid var(--blue);box-shadow:0 0 0 4px #fff;
+}
+.tl-item__stage{display:inline-block;background:var(--blue-soft);color:var(--blue-dark);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:6px}
+.tl-item h3{margin:4px 0 8px;font-size:20px;display:block}
+.tl-item h3::before{display:none}
+.tl-item__dur{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:12px}
+.tl-item p{margin:0 0 .8em;font-size:15.5px;line-height:1.6}
+.tl-item ul{margin:8px 0 0;padding-left:1.2em;font-size:15px}
+.tl-item ul li{margin-bottom:.3em}
+
+/* Error cards */
+.errors{display:grid;grid-template-columns:1fr;gap:14px;margin:28px 0 8px}
+.error{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 24px;background:var(--warning);border:1px solid var(--warning-line);border-radius:var(--radius);transition:transform .2s}
+.error:hover{transform:translateX(3px)}
+.error__icon{
+  flex:0 0 auto;width:42px;height:42px;border-radius:10px;
+  background:#ff8a3d;color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;
+}
+.error h4{margin:0 0 6px;font-size:17px;color:#1a1a1a}
+.error p{margin:0;font-size:14.5px;line-height:1.55;color:#3a3a3a}
+
+/* Checklist */
+.checklist{margin:30px 0 8px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cl-group{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;transition:border-color .2s,box-shadow .2s}
+.cl-group:hover{border-color:#cfe5f7;box-shadow:var(--shadow-sm)}
+.cl-group h4{margin:0 0 14px;font-size:15px;font-weight:700;color:var(--blue-dark);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.cl-group h4::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.cl-list{list-style:none;padding:0;margin:0}
+.cl-list li{margin:0;padding:7px 0;border-bottom:1px dashed #ecedef;display:flex;align-items:flex-start;gap:11px;font-size:14.5px;line-height:1.5;cursor:pointer;user-select:none}
+.cl-list li:last-child{border-bottom:none}
+.cl-list input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;
+  width:20px;height:20px;border:2px solid #c8d1da;border-radius:6px;
+  margin-top:1px;cursor:pointer;position:relative;transition:background .15s,border-color .15s;
+}
+.cl-list input[type=checkbox]:checked{background:var(--blue);border-color:var(--blue)}
+.cl-list input[type=checkbox]:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:800;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);line-height:1}
+.cl-list li:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.cl-reset{margin-top:20px;text-align:right}
+.cl-reset button{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:12px;padding:6px 14px;border-radius:30px;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s}
+.cl-reset button:hover{color:var(--blue);border-color:var(--blue)}
+@media(max-width:780px){.checklist{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{margin:30px 0 0;display:grid;gap:12px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:0;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.faq details[open]{border-color:#cfe5f7;box-shadow:var(--shadow-sm)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:22px 26px;
+  font-weight:600;font-size:16.5px;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";flex:0 0 auto;width:28px;height:28px;border-radius:50%;
+  background:var(--blue-soft);background-image:linear-gradient(45deg,transparent 45%,var(--blue) 45%,var(--blue) 55%,transparent 55%);
+  transition:transform .25s,background .2s;
+}
+.faq details[open] summary::after{transform:rotate(45deg);background-image:linear-gradient(45deg,transparent 45%,var(--blue-dark) 45%,var(--blue-dark) 55%,transparent 55%)}
+.faq__body{padding:0 26px 24px;color:#3a3a3a;font-size:15.5px;line-height:1.65}
+
+/* Pull-quote / note */
+.note-card{
+  margin:28px 0;padding:22px 26px;border-radius:var(--radius);
+  background:linear-gradient(135deg,#fff 0%,#f5fbfe 100%);
+  border:1px solid #d8eaf7;display:flex;gap:16px;align-items:flex-start;
+}
+.note-card__icon{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px}
+.note-card p{margin:0;font-size:15px;line-height:1.6;color:#2a2a2a}
+
+/* CTA */
+.cta-section{margin:60px 0 0;padding:0 24px}
+.cta{
+  max-width:var(--max);margin:0 auto;
+  background:linear-gradient(135deg,#0a0e12 0%,#15344a 100%);
+  border-radius:24px;padding:54px 56px;color:#fff;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.cta::before{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(39,148,227,.35) 0%,transparent 70%);pointer-events:none}
+.cta__eyebrow{color:#7ec5f0;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;display:inline-block}
+.cta h2{color:#fff;font-size:clamp(24px,2.6vw,34px);margin:0 0 16px;line-height:1.2}
+.cta h2 em{font-style:normal;color:#7ec5f0}
+.cta p{color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.6;margin:0 0 26px}
+.cta__contacts{display:grid;gap:10px;margin:0 0 24px}
+.cta__contacts a,.cta__contacts div{display:flex;align-items:center;gap:12px;color:#fff;font-size:15.5px}
+.cta__contacts svg{flex:0 0 auto;color:#7ec5f0}
+.cta__btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  background:var(--blue);color:#fff;border-radius:30px;font-weight:600;font-size:15px;
+  box-shadow:0 6px 18px rgba(39,148,227,.45);transition:transform .2s,background .2s,box-shadow .2s;
+}
+.cta__btn:hover{background:var(--blue-dark);color:#fff;transform:translateY(-2px);box-shadow:0 10px 24px rgba(39,148,227,.55)}
+.cta__card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px;backdrop-filter:blur(10px)}
+.cta__author{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.cta__author img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.18)}
+.cta__author strong{display:block;color:#fff;font-size:15px}
+.cta__author span{display:block;color:rgba(255,255,255,.6);font-size:12.5px}
+.cta__form{display:grid;gap:10px}
+.cta__form input{
+  width:100%;padding:13px 16px;border-radius:10px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);color:#fff;font:inherit;font-size:14.5px;
+  transition:background .2s,border-color .2s;
+}
+.cta__form input::placeholder{color:rgba(255,255,255,.45)}
+.cta__form input:focus{outline:none;background:rgba(255,255,255,.12);border-color:var(--blue)}
+.cta__form button{
+  margin-top:4px;padding:13px 18px;border:none;border-radius:10px;
+  background:var(--blue);color:#fff;font:inherit;font-weight:600;font-size:14.5px;cursor:pointer;
+  transition:background .2s;
+}
+.cta__form button:hover{background:var(--blue-dark)}
+.cta__note{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.4}
+@media(max-width:880px){.cta{grid-template-columns:1fr;padding:38px 30px;gap:32px}}
+
+/* Disclaimer */
+.disclaimer{
+  max-width:var(--max);margin:50px auto 0;padding:22px 26px;
+  background:#f7f8fa;border:1px solid #e6e9ec;border-radius:var(--radius);
+  font-size:13px;color:#6a6a6a;line-height:1.55;font-style:italic;
+}
+
+/* Footer */
+.footer{background:var(--footer);color:rgba(255,255,255,.7);padding:38px 24px;margin-top:50px;font-size:13.5px}
+.footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer img{height:36px;width:auto;filter:invert(1);opacity:.95}
+.footer__info{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.footer__info strong{color:#fff;font-weight:600}
+.footer__legal{white-space:nowrap}
+
+/* Section helpers */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:60px 0 0}
+
+/* Responsive */
+@media(max-width:640px){
+  .topbar__inner{height:60px}
+  .topbar__logo img{height:32px}
+  .topbar__cta{padding:9px 14px;font-size:13px}
+  .hero__inner{padding:60px 20px 80px}
+  .container,.article,.cta-section{padding-left:20px;padding-right:20px}
+  .article{padding-top:40px}
+  .article__body{font-size:16px}
+  .toc-wrap{margin-top:-30px}
+  .toc{padding:16px 18px;gap:6px 8px}
+  .toc a{font-size:12px;padding:6px 11px}
+  .lead-block{padding:22px 22px;font-size:15.5px}
+  .footer__inner{flex-direction:column;align-items:flex-start;gap:18px}
+  .footer__info{flex-direction:column;align-items:flex-start;gap:6px}
+}
+</style>
+</head>
+<body>
+<div class="article__body" style="max-width:780px;margin:60px auto;padding:0 24px;">
+<section><h2 id="etapy"><span class="num">3</span>Этапы ремонта: от бетона до чистовой отделки</h2>
+
+    <figure class="figure">
+      <img src="https://ivigorko.github.io/domoetika-blog-preview/remont-v-novostrojke/assets/etapy.jpg" alt="Черновой этап ремонта: монтаж профилей и прокладка коммуникаций" width="1400" height="781" loading="lazy">
+      <figcaption>Черновой этап — самый грязный и трудоёмкий. Именно здесь закладывается качество всего ремонта.</figcaption>
+    </figure>
+
+
+    <p>Ремонт в новостройке делится на три крупных блока: черновой, чистовой и финишный. Каждый блок — это законченный технологический цикл, который нельзя перескакивать. Спешка на любом этапе превращается в переделки на следующем. Общий принцип: работы идут <strong>от скрытого к финишному</strong> и <strong>сверху вниз</strong> — сначала то, что прячется в стенах и полу, затем выравнивание, и только в конце — то, что видно и легко испортить.</p>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-item__stage">Этап 1</span>
+        <h3>Черновой: коммуникации, выравнивание, подготовка</h3>
+        <div class="tl-item__dur">⏱ 1,5–2,5 месяца для квартиры 50–60 м²</div>
+        <p><strong>Принцип порядка.</strong> Внутри чернового этапа тоже есть жёсткая последовательность, нарушение которой ведёт к переделкам:</p>
+        <ol>
+          <li>Демонтаж → перепланировка → возведение перегородок.</li>
+          <li>Штробление под электрику и сантехнику (до штукатурки).</li>
+          <li>Прокладка электрики и сантехнических труб.</li>
+          <li>Гидроизоляция санузла + тест на протечку.</li>
+          <li>Штукатурка стен.</li>
+          <li>Стяжка пола.</li>
+          <li>Черновой потолок (если не натяжной).</li>
+        </ol>
+        <p>Менять местами штукатурку и электрику нельзя: штробы режутся до штукатурки, иначе придётся штробить уже ровную стену и потом заново её выравнивать.</p>
+        <p><strong>Демонтаж и перепланировка.</strong> Снос ненужных перегородок, возведение новых (из пеноблока, пазогребня или гипсокартона). Если планируется перенос санузла или кухни — это согласуется с управляющей компанией и при необходимости с жилинспекцией. Любые работы с несущими стенами — только по согласованному проекту.</p>
+        <p><strong>Разводка электрики.</strong> Штробление стен, прокладка кабелей в гофре, монтаж подрозетников, распаячных коробок, сборка щитка с автоматами. На этом этапе важно сразу заложить достаточное количество розеток, отдельные линии на мощные потребители (духовка, варочная панель, кондиционер, стиральная машина), слаботочные сети. Стандарт: не менее 2–3 розеток на комнату + отдельные точки на технику.</p>
+        <p><strong>Разводка сантехники.</strong> Прокладка труб холодного и горячего водоснабжения, канализации, монтаж запорной арматуры, фильтров, редукторов давления. В санузлах сразу делается обмазочная гидроизоляция с заходом на стены 15–20 см. После гидроизоляции — обязательный тест на протечку: залить водой 2–3 см на 2–3 часа и проверить прилегающие помещения.</p>
+        <p><strong>Штукатурка стен.</strong> Выравнивание по маякам цементной или гипсовой смесью. Допустимое отклонение — не более 2 мм на 1 м. Сушка — от 5 до 14 дней в зависимости от толщины слоя и материала. Гипсовая штукатурка сохнет быстрее, но не подходит для влажных помещений.</p>
+        <p><strong>Стяжка пола.</strong> Заливка по маякам с армированием или без, в зависимости от толщины. Минимальный слой — 3–4 см, максимальный — до 10–12 см при больших перепадах. Время набора прочности — 28 дней, но ходить можно через 3–5 дней. Полную нагрузку (мебель, техника) давать только после полного высыхания.</p>
+        <blockquote><strong>Важно.</strong> После штукатурки и стяжки помещению нужна сушка. Не пытайтесь ускорить процесс тепловыми пушками — слишком быстрый выход влаги даёт трещины. Естественная вентиляция и температура 18–22°C — оптимальный режим. Проверить готовность стяжки и штукатурки можно влагомером: остаточная влажность штукатурки — не более 5–8%, стяжки — не более 3–5%.</blockquote>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-item__stage">Этап 2</span>
+        <h3>Чистовой: шпатлёвка, плитка, подготовка под финиш</h3>
+        <div class="tl-item__dur">⏱ 2–4 недели</div>
+        <p>Чистовая отделка начинается после полного высыхания черновых слоёв. Проверить готовность можно влагомером или «народным» способом: приклеить скотчем к стяжке кусок полиэтилена 50×50 см. Если через сутки под плёнкой появился конденсат — стяжка ещё не высохла.</p>
+        <p><strong>Финишная шпатлёвка стен и потолков.</strong> Два-три слоя с промежуточной шлифовкой. После шпатлёвки — обязательная грунтовка, иначе краска и обои лягут неравномерно. В новостройках под покраску рекомендуется наклеить стеклохолст — он армирует поверхность и защищает от микротрещин при усадке.</p>
+        <p><strong>Укладка плитки.</strong> Сначала — стены, потом — пол. В санузлах плитка укладывается после гидроизоляции и проверки её качества. Затирка — влагостойкая, в мокрых зонах лучше эпоксидная (не темнеет, не впитывает грязь). Ширина шва — 2–3 мм для настенной плитки, 3–5 мм для напольной.</p>
+        <p><strong>Монтаж подоконников и откосов.</strong> Если откосы не сделаны на черновом этапе, делаются сейчас — до финишной отделки стен. Пластиковые откосы — проще и дешевле, штукатурные с покраской — эстетичнее, но требуют больше времени.</p>
+        <p><strong>Установка ванны и душевой кабины.</strong> До укладки напольных покрытий в санузле. Ванна ставится на ножки или на подиум, подключается к канализации через гофру или жёсткий патрубок.</p>
+        <p><strong>Подготовка стен под обои или покраску.</strong> Шлифовка, обеспыливание, грунтовка, наклейка стеклохолста или флизелина под обои. Под покраску поверхность должна быть идеально ровной: любой дефект проявится при боковом освещении.</p>
+      </div>
+
+      <div class="tl-item">
+        <span class="tl-item__stage">Этап 3</span>
+        <h3>Финишный: покраска, обои, чистовые покрытия</h3>
+        <div class="tl-item__dur">⏱ 2–3 недели</div>
+        <p>Финиш — это та часть ремонта, которую видит заказчик. Все материалы должны быть закуплены заранее, чтобы не было простоя. Любая задержка с одним материалом сдвигает весь график.</p>
+        <p><strong>Покраска потолков и стен.</strong> В 2–3 слоя с промежуточной сушкой. Используется интерьерная краска с высокой укрывистостью, желательно — моющаяся, особенно для кухни и прихожей. Для влажных помещений — краска с антисептическими добавками.</p>
+        <p><strong>Поклейка обоев.</strong> На флизелиновый клей, встык. Углы — с заводом 1,5–2 см на смежную стену, иначе будут видны стыки. Флизелиновые обои можно красить до 5–7 раз, что удобно при косметическом обновлении через несколько лет.</p>
+        <p><strong>Укладка напольных покрытий.</strong> Ламинат, паркетная доска, кварцвинил, керамогранит — после полной готовности стен и потолков, чтобы не повредить покрытие инструментом и краской. Подложка под ламинат — 2–3 мм, не больше, иначе замки расшатываются. Кварцвинил и керамогранит можно укладывать на «тёплый пол».</p>
+        <p><strong>Установка межкомнатных дверей.</strong> С наличниками и доборами. До установки чистовой электрики. Между дверной коробкой и стеной — монтажная пена, после высыхания — обрезка и установка наличников.</p>
+        <p><strong>Монтаж чистовой электрики.</strong> Розетки, выключатели, светильники, диммеры, терморегуляторы тёплого пола. Рамки электрики — в одном стиле по всей квартире, иначе создают визуальный шум.</p>
+        <p><strong>Установка сантехнических приборов.</strong> Смесители, унитаз, раковина, полотенцесушитель, аксессуары. Все приборы подключаются через запорную арматуру — чтобы при необходимости можно было отключить один прибор без перекрытия воды во всей квартире.</p>
+        <p><strong>Сборка и установка кухни.</strong> Заказывается заранее, монтируется после чистовой отделки. Замер кухни — до укладки плитки на фартук.</p>
+        <p><strong>Финальная уборка и расстановка мебели.</strong> Включает мойку окон, чистку плитки, удаление защитной плёнки с дверей и техники, удаление строительной пыли из труднодоступных мест.</p>
+        <blockquote><strong>Акт приёмки работ.</strong> После финишного этапа подписывается акт с перечнем выполненных работ и гарантийными обязательствами. До подписания пройдите по чек-листу ниже и зафиксируйте все недочёты — подрядчик обязан устранить их за свой счёт. После подписания акта начинает течь гарантийный срок.</blockquote>
+      </div>
+    </div>
+
+    <h3>Сколько времени занимает ремонт в новостройке</h3>
+    <p>Сроки ремонта — один из главных вопросов, которые задают заказчики. Однозначного ответа нет: всё зависит от площади, объёма работ, выбранных материалов и загрузки подрядчика. Но есть ориентиры, от которых можно отталкиваться.</p>
+    <p><strong>По площади квартиры (стандартная отделка, без сложной перепланировки):</strong></p>
+    <ul>
+      <li><strong>Студия (25–35 м²).</strong> Черновой этап — 3–4 недели, чистовой — 2–3 недели, финишный — 1–2 недели. Итого: 6–9 недель.</li>
+      <li><strong>Однокнатная (35–45 м²).</strong> Черновой — 4–5 недель, чистовой — 3–4 недели, финишный — 2–3 недели. Итого: 9–12 недель.</li>
+      <li><strong>Двухкомнатная (55–70 м²).</strong> Черновой — 6–8 недель, чистовой — 3–5 недель, финишный — 2–3 недели. Итого: 11–16 недель.</li>
+      <li><strong>Трёхкомнатная (75–100 м²).</strong> Черновой — 8–10 недель, чистовой — 4–6 недель, финишный — 3–4 недели. Итого: 15–20 недель.</li>
+    </ul>
+    <p><strong>Что ускоряет ремонт:</strong> готовый дизайн-проект, команда с узкой специализацией, закупка материалов силами подрядчика, качественная предчистовая отделка от застройщика.</p>
+    <p><strong>Что затягивает ремонт:</strong> сложная перепланировка с согласованием, замена инженерных систем застройщика, ожидание заказных позиций, болезни и отпуска, дополнительные работы, выявленные в процессе (плесень, кривизна стен, неработающая вентиляция).</p>
+    <blockquote><strong>Реалистичный ориентир:</strong> закладывайте 3–4 месяца на однокомнатную квартиру без отделки, 4–5 месяцев на двухкомнатную, 5–6 месяцев на трёхкомнатную. Это «с запасом» — реальный срок может быть меньше, но если что-то пойдёт не так, вы будете к этому готовы.</blockquote>
+
+</section>
+</div>
+</body>
+</html>
