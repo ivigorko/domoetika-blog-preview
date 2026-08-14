@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>С чего начать — Ремонт в новостройке</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#2794e3;
+  --blue-dark:#1684d4;
+  --blue-soft:#ebf5fc;
+  --text:#454545;
+  --muted:#777;
+  --line:#e6e9ec;
+  --card:#f4f5f6;
+  --footer:#111;
+  --white:#fff;
+  --warning:#fff4e6;
+  --warning-line:#ffd9a8;
+  --shadow-sm:0 2px 8px rgba(44,75,98,.06);
+  --shadow-md:0 12px 32px rgba(44,75,98,.10);
+  --shadow-lg:0 24px 60px rgba(44,75,98,.14);
+  --radius:18px;
+  --radius-sm:12px;
+  --max:1160px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:var(--white);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:var(--blue);text-decoration:none;transition:color .2s ease}
+a:hover{color:var(--blue-dark)}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-weight:700;line-height:1.18;letter-spacing:-.01em;margin:0 0 .5em;color:#1a1a1a}
+h2{font-size:clamp(28px,3.4vw,42px);margin-top:1.4em}
+h3{font-size:clamp(20px,2vw,24px);margin-top:1.4em;color:#1a1a1a}
+h4{font-size:18px;margin-top:1.2em}
+p{margin:0 0 1em}
+strong{color:#1a1a1a;font-weight:600}
+ul,ol{margin:0 0 1.2em;padding-left:1.4em}
+li{margin-bottom:.4em}
+blockquote{
+  margin:1.6em 0;
+  padding:18px 22px;
+  background:var(--blue-soft);
+  border-left:4px solid var(--blue);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  color:#1a1a1a;
+  font-size:15px;
+}
+blockquote strong{color:var(--blue-dark)}
+
+/* Topbar */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.topbar__inner{display:flex;align-items:center;justify-content:space-between;height:70px;gap:24px}
+.topbar__logo{display:flex;align-items:center;gap:10px}
+.topbar__logo img{height:38px;width:auto}
+.topbar__logo span{font-weight:700;color:#1a1a1a;font-size:15px;letter-spacing:.02em}
+.topbar__nav{display:flex;align-items:center;gap:6px}
+.topbar__nav a{color:var(--text);font-size:14px;font-weight:500;padding:8px 12px;border-radius:8px;transition:background .2s}
+.topbar__nav a:hover{background:var(--blue-soft);color:var(--blue-dark)}
+.topbar__cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 20px;background:var(--blue);color:#fff;
+  border-radius:30px;font-weight:600;font-size:14px;
+  box-shadow:0 4px 14px rgba(39,148,227,.35);
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.topbar__cta:hover{background:var(--blue-dark);color:#fff;transform:translateY(-1px);box-shadow:0 6px 18px rgba(39,148,227,.45)}
+@media(max-width:900px){.topbar__nav{display:none}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:#0a0e12;color:#fff}
+.hero__media{position:absolute;inset:0;z-index:0}
+.hero__media img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.85) 100%)}
+.hero__inner{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:90px 24px 110px;text-align:left}
+.hero__eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:#9ed1f5;margin-bottom:18px;
+}
+.hero__eyebrow::before{content:"";width:32px;height:1px;background:#9ed1f5}
+.hero h1{font-size:clamp(30px,4.6vw,56px);line-height:1.08;margin:0 0 22px;color:#fff;font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:#7ec5f0}
+.hero__lead{font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(255,255,255,.85);max-width:760px;margin:0 0 30px}
+.hero__meta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:rgba(255,255,255,.78);font-size:14px}
+.hero__meta .dot{width:4px;height:4px;background:rgba(255,255,255,.4);border-radius:50%}
+.hero__meta a{color:#9ed1f5}
+
+/* TOC */
+.toc-wrap{max-width:var(--max);margin:-50px auto 0;padding:0 24px;position:relative;z-index:5}
+.toc{
+  background:#fff;border-radius:var(--radius);
+  box-shadow:var(--shadow-md);
+  padding:22px 26px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+  border:1px solid var(--line);
+}
+.toc__label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.toc a{
+  display:inline-block;padding:8px 14px;border-radius:30px;
+  font-size:13px;font-weight:600;color:var(--text);background:var(--card);
+  transition:background .2s,color .2s;
+}
+.toc a:hover{background:var(--blue);color:#fff}
+
+/* Article layout */
+.article{max-width:var(--max);margin:0 auto;padding:60px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.article__body{max-width:780px;margin:0 auto;font-size:17px;line-height:1.7}
+.article__body h2{margin-top:2.2em;padding-top:.3em;position:relative}
+.article__body h2::before{
+  content:"";display:block;width:48px;height:3px;background:var(--blue);
+  border-radius:2px;margin-bottom:18px;
+}
+.article__body h2 .num{
+  display:inline-block;width:36px;height:36px;line-height:36px;text-align:center;
+  background:var(--blue);color:#fff;border-radius:10px;font-size:15px;font-weight:700;margin-right:14px;
+  vertical-align:middle;transform:translateY(-2px);
+}
+.article__body h3{margin-top:1.8em;font-size:21px;color:#1a1a1a}
+.article__body h3::before{content:"›";color:var(--blue);font-weight:800;margin-right:10px;font-size:26px;line-height:1;vertical-align:-3px}
+.article__body p{margin:0 0 1.1em}
+.article__body ul li::marker{color:var(--blue);font-weight:700}
+
+.lead-block{
+  background:linear-gradient(135deg,#f7fbfe 0%,#eaf5fc 100%);
+  border-radius:var(--radius);padding:28px 32px;margin:0 0 40px;
+  font-size:16.5px;line-height:1.65;color:#2a2a2a;border:1px solid #d8eaf7;
+}
+.lead-block p{margin:0 0 12px}
+.lead-block p:last-child{margin:0}
+
+.figure{margin:32px -8px 36px}
+.figure img{width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow-md);aspect-ratio:16/9;object-fit:cover}
+.figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;padding:0 8px;font-style:italic}
+
+/* Step cards (С чего начать) */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:28px 0 8px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.step::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-dark));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.step:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#cfe5f7}
+.step:hover::before{transform:scaleX(1)}
+.step__num{display:inline-block;width:40px;height:40px;line-height:40px;text-align:center;background:var(--blue-soft);color:var(--blue-dark);font-weight:800;font-size:18px;border-radius:12px;margin-bottom:14px}
+.step h4{margin:0 0 8px;font-size:17px;color:#1a1a1a}
+.step p{margin:0;font-size:14px;line-height:1.55;color:#5a5a5a}
+@media(max-width:780px){.steps{grid-template-columns:1fr}}
+
+/* Timeline (Этапы) */
+.timeline{margin:36px 0 12px;position:relative;padding-left:8px}
+.timeline::before{content:"";position:absolute;left:24px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--blue) 0%,#cfe5f7 100%);border-radius:2px}
+.tl-item{position:relative;padding:0 0 28px 64px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:14px;top:8px;width:22px;height:22px;border-radius:50%;
+  background:#fff;border:3px solid var(--blue);box-shadow:0 0 0 4px #fff;
+}
+.tl-item__stage{display:inline-block;background:var(--blue-soft);color:var(--blue-dark);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:6px}
+.tl-item h3{margin:4px 0 8px;font-size:20px;display:block}
+.tl-item h3::before{display:none}
+.tl-item__dur{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:12px}
+.tl-item p{margin:0 0 .8em;font-size:15.5px;line-height:1.6}
+.tl-item ul{margin:8px 0 0;padding-left:1.2em;font-size:15px}
+.tl-item ul li{margin-bottom:.3em}
+
+/* Error cards */
+.errors{display:grid;grid-template-columns:1fr;gap:14px;margin:28px 0 8px}
+.error{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 24px;background:var(--warning);border:1px solid var(--warning-line);border-radius:var(--radius);transition:transform .2s}
+.error:hover{transform:translateX(3px)}
+.error__icon{
+  flex:0 0 auto;width:42px;height:42px;border-radius:10px;
+  background:#ff8a3d;color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;
+}
+.error h4{margin:0 0 6px;font-size:17px;color:#1a1a1a}
+.error p{margin:0;font-size:14.5px;line-height:1.55;color:#3a3a3a}
+
+/* Checklist */
+.checklist{margin:30px 0 8px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cl-group{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;transition:border-color .2s,box-shadow .2s}
+.cl-group:hover{border-color:#cfe5f7;box-shadow:var(--shadow-sm)}
+.cl-group h4{margin:0 0 14px;font-size:15px;font-weight:700;color:var(--blue-dark);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.cl-group h4::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.cl-list{list-style:none;padding:0;margin:0}
+.cl-list li{margin:0;padding:7px 0;border-bottom:1px dashed #ecedef;display:flex;align-items:flex-start;gap:11px;font-size:14.5px;line-height:1.5;cursor:pointer;user-select:none}
+.cl-list li:last-child{border-bottom:none}
+.cl-list input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;
+  width:20px;height:20px;border:2px solid #c8d1da;border-radius:6px;
+  margin-top:1px;cursor:pointer;position:relative;transition:background .15s,border-color .15s;
+}
+.cl-list input[type=checkbox]:checked{background:var(--blue);border-color:var(--blue)}
+.cl-list input[type=checkbox]:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:800;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);line-height:1}
+.cl-list li:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.cl-reset{margin-top:20px;text-align:right}
+.cl-reset button{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:12px;padding:6px 14px;border-radius:30px;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s}
+.cl-reset button:hover{color:var(--blue);border-color:var(--blue)}
+@media(max-width:780px){.checklist{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{margin:30px 0 0;display:grid;gap:12px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:0;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.faq details[open]{border-color:#cfe5f7;box-shadow:var(--shadow-sm)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:22px 26px;
+  font-weight:600;font-size:16.5px;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";flex:0 0 auto;width:28px;height:28px;border-radius:50%;
+  background:var(--blue-soft);background-image:linear-gradient(45deg,transparent 45%,var(--blue) 45%,var(--blue) 55%,transparent 55%);
+  transition:transform .25s,background .2s;
+}
+.faq details[open] summary::after{transform:rotate(45deg);background-image:linear-gradient(45deg,transparent 45%,var(--blue-dark) 45%,var(--blue-dark) 55%,transparent 55%)}
+.faq__body{padding:0 26px 24px;color:#3a3a3a;font-size:15.5px;line-height:1.65}
+
+/* Pull-quote / note */
+.note-card{
+  margin:28px 0;padding:22px 26px;border-radius:var(--radius);
+  background:linear-gradient(135deg,#fff 0%,#f5fbfe 100%);
+  border:1px solid #d8eaf7;display:flex;gap:16px;align-items:flex-start;
+}
+.note-card__icon{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px}
+.note-card p{margin:0;font-size:15px;line-height:1.6;color:#2a2a2a}
+
+/* CTA */
+.cta-section{margin:60px 0 0;padding:0 24px}
+.cta{
+  max-width:var(--max);margin:0 auto;
+  background:linear-gradient(135deg,#0a0e12 0%,#15344a 100%);
+  border-radius:24px;padding:54px 56px;color:#fff;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.cta::before{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(39,148,227,.35) 0%,transparent 70%);pointer-events:none}
+.cta__eyebrow{color:#7ec5f0;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;display:inline-block}
+.cta h2{color:#fff;font-size:clamp(24px,2.6vw,34px);margin:0 0 16px;line-height:1.2}
+.cta h2 em{font-style:normal;color:#7ec5f0}
+.cta p{color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.6;margin:0 0 26px}
+.cta__contacts{display:grid;gap:10px;margin:0 0 24px}
+.cta__contacts a,.cta__contacts div{display:flex;align-items:center;gap:12px;color:#fff;font-size:15.5px}
+.cta__contacts svg{flex:0 0 auto;color:#7ec5f0}
+.cta__btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  background:var(--blue);color:#fff;border-radius:30px;font-weight:600;font-size:15px;
+  box-shadow:0 6px 18px rgba(39,148,227,.45);transition:transform .2s,background .2s,box-shadow .2s;
+}
+.cta__btn:hover{background:var(--blue-dark);color:#fff;transform:translateY(-2px);box-shadow:0 10px 24px rgba(39,148,227,.55)}
+.cta__card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px;backdrop-filter:blur(10px)}
+.cta__author{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.cta__author img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.18)}
+.cta__author strong{display:block;color:#fff;font-size:15px}
+.cta__author span{display:block;color:rgba(255,255,255,.6);font-size:12.5px}
+.cta__form{display:grid;gap:10px}
+.cta__form input{
+  width:100%;padding:13px 16px;border-radius:10px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);color:#fff;font:inherit;font-size:14.5px;
+  transition:background .2s,border-color .2s;
+}
+.cta__form input::placeholder{color:rgba(255,255,255,.45)}
+.cta__form input:focus{outline:none;background:rgba(255,255,255,.12);border-color:var(--blue)}
+.cta__form button{
+  margin-top:4px;padding:13px 18px;border:none;border-radius:10px;
+  background:var(--blue);color:#fff;font:inherit;font-weight:600;font-size:14.5px;cursor:pointer;
+  transition:background .2s;
+}
+.cta__form button:hover{background:var(--blue-dark)}
+.cta__note{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.4}
+@media(max-width:880px){.cta{grid-template-columns:1fr;padding:38px 30px;gap:32px}}
+
+/* Disclaimer */
+.disclaimer{
+  max-width:var(--max);margin:50px auto 0;padding:22px 26px;
+  background:#f7f8fa;border:1px solid #e6e9ec;border-radius:var(--radius);
+  font-size:13px;color:#6a6a6a;line-height:1.55;font-style:italic;
+}
+
+/* Footer */
+.footer{background:var(--footer);color:rgba(255,255,255,.7);padding:38px 24px;margin-top:50px;font-size:13.5px}
+.footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer img{height:36px;width:auto;filter:invert(1);opacity:.95}
+.footer__info{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.footer__info strong{color:#fff;font-weight:600}
+.footer__legal{white-space:nowrap}
+
+/* Section helpers */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:60px 0 0}
+
+/* Responsive */
+@media(max-width:640px){
+  .topbar__inner{height:60px}
+  .topbar__logo img{height:32px}
+  .topbar__cta{padding:9px 14px;font-size:13px}
+  .hero__inner{padding:60px 20px 80px}
+  .container,.article,.cta-section{padding-left:20px;padding-right:20px}
+  .article{padding-top:40px}
+  .article__body{font-size:16px}
+  .toc-wrap{margin-top:-30px}
+  .toc{padding:16px 18px;gap:6px 8px}
+  .toc a{font-size:12px;padding:6px 11px}
+  .lead-block{padding:22px 22px;font-size:15.5px}
+  .footer__inner{flex-direction:column;align-items:flex-start;gap:18px}
+  .footer__info{flex-direction:column;align-items:flex-start;gap:6px}
+}
+</style>
+</head>
+<body style="background:#f7f8fa;">
+<!-- Ремонт в новостройке — С чего начать (Zero Block для Tilda) -->
+<div class="article__body" style="max-width:780px;margin:0 auto;padding:0 24px;">
+<section><h2 id="start"><span class="num">2</span>С чего начать ремонт в новостройке</h2>
+
+    <p>Порядок действий в первые недели после получения ключей определяет весь ход ремонта. Ошибка на старте обходится дороже всего: меняется планировка, пересогласуются инженерные решения, сдвигаются сроки, пересчитывается смета. Этап «до старта работ» занимает 1–3 недели, и его нельзя сокращать.</p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step__num">1</div>
+        <h4>Приёмка квартиры</h4>
+        <p>Технический осмотр с дефектной ведомостью. Подписание акта без проверки — самая частая ошибка собственников.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">2</div>
+        <h4>Проектирование</h4>
+        <p>Обмерный план, планировочное решение, схема инженерных сетей. По желанию — полный дизайн-проект.</p>
+      </div>
+      <div class="step">
+        <div class="step__num">3</div>
+        <h4>Выбор подрядчика</h4>
+        <p>Сравнение 2–3 кандидатов по портфолио, договору, прозрачной оплате и реальным отзывам на объектах.</p>
+      </div>
+    </div>
+
+
+
+    <h3>Шаг 1. Приёмка квартиры у застройщика</h3>
+    <p>Приёмка — это не формальность, а технический осмотр с составлением дефектной ведомости. Подписывать акт приёмки без тщательной проверки — самая частая ошибка, которую допускают собственники. После подписания претензии по скрытым дефектам принимаются только в рамках гарантийного срока.</p>
+    <p>Что нужно проверить:</p>
+    <ol>
+      <li><strong>Стены и потолки.</strong> Трещины, сколы, пятна сырости, отслоения штукатурки. Допустимое отклонение по вертикали — не более 2 мм на 1 м высоты.</li>
+      <li><strong>Пол и стяжка.</strong> Перепады по плоскости, пустоты при простукивании, отслоения. Допустимое отклонение — не более 2 мм на 2 м длины.</li>
+      <li><strong>Окна и двери.</strong> Царапины на стёклах, перекосы рам, работоспособность фурнитуры, герметичность монтажных швов, целостность уплотнителей.</li>
+      <li><strong>Электрика и сантехника.</strong> Наличие заземления в розетках, работоспособность автоматов в щитке, наличие счётчиков, работоспособность запорной арматуры.</li>
+      <li><strong>Вентиляция.</strong> Тяга в санузле и кухне. Если вентиляционные каналы забиты строительным мусором — это нарушение.</li>
+      <li><strong>Площадь помещений.</strong> Сверить с данными ДДУ. Разница даже в 0,5 м² — повод для компенсации.</li>
+    </ol>
+    <p><strong>Что взять с собой на приёмку:</strong> лазерный уровень или двухметровое правило, рулетку 5–7 м, фонарик, розетку-тестер или мультиметр, зажигалку или лист бумаги для проверки вентиляции, блокнот или смартфон с камерой, ДДУ и передаточный акт.</p>
+    <p>Проверка занимает 2–3 часа на квартиру 50–60 м². Не торопитесь: каждый незамеченный дефект — это ваши будущие расходы на переделку. Все дефекты фиксируются в акте. Застройщик обязан устранить их в течение согласованного срока или предоставить компенсацию.</p>
+    <blockquote>С приёмкой лучше идти со специалистом. Эксперт по приёмке проверит квартиру за 2–3 часа и выдаст детальный акт с фотофиксацией. Это инвестиция, которая окупается в первые недели ремонта.</blockquote>
+
+    <h3>Шаг 2. Проектирование</h3>
+    <p>Даже если вы не заказываете полноценный дизайн-проект, перед стартом работ нужно три документа:</p>
+    <ul>
+      <li><strong>Обмерный план.</strong> Реальные размеры всех помещений с привязкой к несущим стенам, окнам, стоякам, вентиляционным шахтам. Без обмеров невозможно точно рассчитать материалы и спланировать расстановку мебели.</li>
+      <li><strong>Планировочное решение.</strong> Где будут перегородки, где — дверные проёмы, где — сантехника и кухонное оборудование. Перепланировка согласуется отдельно, если затрагивает несущие конструкции.</li>
+      <li><strong>Схема инженерных сетей.</strong> Точки электрики, разводка сантехники, вентиляция, кондиционирование, слаботочные сети (интернет, ТВ, домофон).</li>
+    </ul>
+    <p>Дизайн-проект добавляет к этому визуализацию, развёртки стен, спецификации материалов и авторский надзор. По нашей статистике, около 60% клиентов заказывают дизайн-проект, остальные обходятся техническим дизайном или работают по планировке от застройщика с минимальными правками. <strong>Технический дизайн</strong> — это промежуточный вариант: рабочие чертежи для строителей, без 3D-визуализации. Подходит, когда заказчик уже понимает, что хочет получить, и не нуждается в подборе стиля.</p>
+    <p>Если планируется перепланировка — снос перегородок, перенос санузла, расширение кухни — её нужно согласовать до начала работ. Любые изменения конфигурации квартиры проходят через управляющую компанию и при необходимости — через жилищную инспекцию. Работы с несущими стенами выполняются только по согласованному проекту.</p>
+
+    <h3>Шаг 3. Выбор подрядчика</h3>
+    <p>Подрядчик — это главный человек на стройке после вас. От того, насколько грамотно вы его выберете, зависит качество ремонта, сроки и ваши нервы. На что смотреть при выборе:</p>
+    <ul>
+      <li><strong>Портфолио в новостройках.</strong> Опыт работы с «голым бетоном» отличается от ремонта вторички: больше скрытых работ, больше рисков с усадкой, длиннее цикл.</li>
+      <li><strong>Документальное сопровождение.</strong> Договор с фиксированной сметой, акты скрытых работ, гарантийные обязательства.</li>
+      <li><strong>Прозрачная оплата.</strong> Поэтапная, привязанная к приёмке конкретных работ. Без предоплаты 70–100% до старта.</li>
+      <li><strong>Реальные отзывы.</strong> Лучше всего — с возможностью посмотреть готовый объект и поговорить с предыдущим заказчиком.</li>
+    </ul>
+    <p>Пять форматных моделей работы с подрядчиком мы разбирали в статье <a href="https://www.domoetika.ru/kak-vybrat-podryadchika">«Как выбрать подрядчика на ремонт квартиры»</a> — там же чек-лист из 12 пунктов для оценки кандидатов. Дополнительно на странице <a href="https://www.domoetika.ru/">услуг студии «Домоэтика»</a> можно посмотреть четыре фирменных формата работы. На этапе выбора подрядчика имеет смысл встретиться с 2–3 кандидатами и сравнить их подход. Не ориентируйтесь только на самую низкую смету — заниженная смета обычно означает, что часть работ «забыли» посчитать и добавят в процессе.</p>
+
+</section>
+</div>
+</body>
+</html>
