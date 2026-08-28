@@ -1,0 +1,581 @@
+<style>
+:root{
+  --blue:#2794e3;
+  --blue-dark:#1684d4;
+  --blue-soft:#ebf5fc;
+  --text:#454545;
+  --muted:#777;
+  --line:#e6e9ec;
+  --card:#f4f5f6;
+  --footer:#111;
+  --white:#fff;
+  --warning:#fff4e6;
+  --warning-line:#ffd9a8;
+  --shadow-sm:0 2px 8px rgba(44,75,98,.06);
+  --shadow-md:0 12px 32px rgba(44,75,98,.10);
+  --shadow-lg:0 24px 60px rgba(44,75,98,.14);
+  --radius:18px;
+  --radius-sm:12px;
+  --max:1160px;
+}
+.skip-link{position:fixed;left:16px;top:12px;z-index:10000;background:#0b6eae;color:#fff;padding:12px 16px;border-radius:8px;font-weight:700;transform:translateY(-160%)}
+.skip-link:focus{transform:translateY(0)}
+a,button,input,summary{touch-action:manipulation}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  font-family:'Montserrat',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+  color:var(--text);
+  background:var(--white);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+img{max-width:100%;display:block;height:auto}
+a{color:var(--blue);text-decoration:none;transition:color .2s ease}
+a:hover{color:var(--blue-dark)}
+.container{max-width:var(--max);margin:0 auto;padding:0 24px}
+h1,h2,h3,h4{font-weight:700;line-height:1.18;letter-spacing:-.01em;margin:0 0 .5em;color:#1a1a1a}
+h2{font-size:clamp(28px,3.4vw,42px);margin-top:1.4em}
+h3{font-size:clamp(20px,2vw,24px);margin-top:1.4em;color:#1a1a1a}
+h4{font-size:18px;margin-top:1.2em}
+p{margin:0 0 1em}
+strong{color:#1a1a1a;font-weight:600}
+ul,ol{margin:0 0 1.2em;padding-left:1.4em}
+li{margin-bottom:.4em}
+blockquote{
+  margin:1.6em 0;
+  padding:18px 22px;
+  background:var(--blue-soft);
+  border-left:4px solid var(--blue);
+  border-radius:0 var(--radius-sm) var(--radius-sm) 0;
+  color:#1a1a1a;
+  font-size:15px;
+}
+blockquote strong{color:var(--blue-dark)}
+
+/* Topbar */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(180%) blur(14px);
+  -webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-bottom:1px solid var(--line);
+}
+.topbar__inner{display:flex;align-items:center;justify-content:space-between;height:70px;gap:24px}
+.topbar__logo{display:flex;align-items:center;gap:10px}
+.topbar__logo img{height:38px;width:auto}
+.topbar__logo span{font-weight:700;color:#1a1a1a;font-size:15px;letter-spacing:.02em}
+.topbar__nav{display:flex;align-items:center;gap:6px}
+.topbar__nav a{color:var(--text);font-size:14px;font-weight:500;padding:8px 12px;border-radius:8px;transition:background .2s}
+.topbar__nav a:hover{background:var(--blue-soft);color:var(--blue-dark)}
+.topbar__cta{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 20px;background:var(--blue);color:#fff;
+  border-radius:30px;font-weight:600;font-size:14px;
+  box-shadow:0 4px 14px rgba(39,148,227,.35);
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.topbar__cta:hover{background:var(--blue-dark);color:#fff;transform:translateY(-1px);box-shadow:0 6px 18px rgba(39,148,227,.45)}
+@media(max-width:900px){.topbar__nav{display:none}}
+
+/* Hero */
+.hero{position:relative;overflow:hidden;background:#0a0e12;color:#fff}
+.hero__media{position:absolute;inset:0;z-index:0}
+.hero__media img{width:100%;height:100%;object-fit:cover;opacity:.55}
+.hero__media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.25) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.85) 100%)}
+.hero__inner{position:relative;z-index:1;max-width:920px;margin:0 auto;padding:90px 24px 110px;text-align:left}
+.hero__eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:#9ed1f5;margin-bottom:18px;
+}
+.hero__eyebrow::before{content:"";width:32px;height:1px;background:#9ed1f5}
+.hero h1{font-size:clamp(30px,4.6vw,56px);line-height:1.08;margin:0 0 22px;color:#fff;font-weight:800;letter-spacing:-.02em}
+.hero h1 em{font-style:normal;color:#7ec5f0}
+.hero__lead{font-size:clamp(16px,1.6vw,19px);line-height:1.6;color:rgba(255,255,255,.85);max-width:760px;margin:0 0 30px}
+.hero__meta{display:flex;flex-wrap:wrap;align-items:center;gap:18px;color:rgba(255,255,255,.78);font-size:14px}
+.hero__meta .dot{width:4px;height:4px;background:rgba(255,255,255,.4);border-radius:50%}
+.hero__meta a{color:#9ed1f5}
+
+/* TOC */
+.toc-wrap{max-width:var(--max);margin:-50px auto 0;padding:0 24px;position:relative;z-index:5}
+.toc{
+  background:#fff;border-radius:var(--radius);
+  box-shadow:var(--shadow-md);
+  padding:22px 26px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+  border:1px solid var(--line);
+}
+.toc__label{font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.toc a{
+  display:inline-block;padding:8px 14px;border-radius:30px;
+  font-size:13px;font-weight:600;color:var(--text);background:var(--card);
+  transition:background .2s,color .2s;
+}
+.toc a:hover{background:var(--blue);color:#fff}
+
+/* Article layout */
+.article{max-width:var(--max);margin:0 auto;padding:60px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
+.article__body{max-width:780px;margin:0 auto;font-size:17px;line-height:1.7}
+.article__body h2{margin-top:2.2em;padding-top:.3em;position:relative}
+.article__body h2::before{
+  content:"";display:block;width:48px;height:3px;background:var(--blue);
+  border-radius:2px;margin-bottom:18px;
+}
+.article__body h2 .num{
+  display:inline-block;width:36px;height:36px;line-height:36px;text-align:center;
+  background:var(--blue);color:#fff;border-radius:10px;font-size:15px;font-weight:700;margin-right:14px;
+  vertical-align:middle;transform:translateY(-2px);
+}
+.article__body h3{margin-top:1.8em;font-size:21px;color:#1a1a1a}
+.article__body h3::before{content:"•";color:var(--blue);font-weight:800;margin-right:10px;font-size:22px;line-height:1;vertical-align:-2px}
+.article__body p{margin:0 0 1.1em}
+.article__body ul li::marker{color:var(--blue);font-weight:700}
+
+.lead-block{
+  background:linear-gradient(135deg,#f7fbfe 0%,#eaf5fc 100%);
+  border-radius:var(--radius);padding:28px 32px;margin:0 0 40px;
+  font-size:16.5px;line-height:1.65;color:#2a2a2a;border:1px solid #d8eaf7;
+}
+.lead-block p{margin:0 0 12px}
+.lead-block p:last-child{margin:0}
+
+.figure{margin:32px -8px 36px}
+.figure img{width:100%;height:auto;border-radius:var(--radius);box-shadow:var(--shadow-md);aspect-ratio:16/9;object-fit:cover}
+.figure figcaption{font-size:13px;color:var(--muted);margin-top:10px;padding:0 8px;font-style:italic}
+
+/* Step cards (С чего начать) */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin:28px 0 8px}
+.step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:24px 22px;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;overflow:hidden}
+.step::before{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--blue),var(--blue-dark));transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.step:hover{transform:translateY(-3px);box-shadow:var(--shadow-md);border-color:#cfe5f7}
+.step:hover::before{transform:scaleX(1)}
+.step__num{display:inline-block;width:40px;height:40px;line-height:40px;text-align:center;background:var(--blue-soft);color:var(--blue-dark);font-weight:800;font-size:18px;border-radius:12px;margin-bottom:14px}
+.step h4{margin:0 0 8px;font-size:17px;color:#1a1a1a}
+.step p{margin:0;font-size:14px;line-height:1.55;color:#5a5a5a}
+@media(max-width:780px){.steps{grid-template-columns:1fr}}
+
+/* Timeline (Этапы) */
+.timeline{margin:36px 0 12px;position:relative;padding-left:8px}
+.timeline::before{content:"";position:absolute;left:24px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--blue) 0%,#cfe5f7 100%);border-radius:2px}
+.tl-item{position:relative;padding:0 0 28px 64px}
+.tl-item:last-child{padding-bottom:0}
+.tl-item::before{
+  content:"";position:absolute;left:14px;top:8px;width:22px;height:22px;border-radius:50%;
+  background:#fff;border:3px solid var(--blue);box-shadow:0 0 0 4px #fff;
+}
+.tl-item__stage{display:inline-block;background:var(--blue-soft);color:var(--blue-dark);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:6px;margin-bottom:6px}
+.tl-item h3{margin:4px 0 8px;font-size:20px;display:block}
+.tl-item h3::before{display:none}
+.tl-item__dur{font-size:12px;color:var(--muted);font-weight:600;margin-bottom:12px}
+.tl-item p{margin:0 0 .8em;font-size:15.5px;line-height:1.6}
+.tl-item ul{margin:8px 0 0;padding-left:1.2em;font-size:15px}
+.tl-item ul li{margin-bottom:.3em}
+
+/* Error cards */
+.errors{display:grid;grid-template-columns:1fr;gap:14px;margin:28px 0 8px}
+.error{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:20px 24px;background:var(--warning);border:1px solid var(--warning-line);border-radius:var(--radius);transition:transform .2s}
+.error:hover{transform:translateX(3px)}
+.error__icon{
+  flex:0 0 auto;width:42px;height:42px;border-radius:10px;
+  background:#ff8a3d;color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px;
+}
+.error h4{margin:0 0 6px;font-size:17px;color:#1a1a1a}
+.error p{margin:0;font-size:14.5px;line-height:1.55;color:#3a3a3a}
+
+/* Checklist */
+.checklist{margin:30px 0 8px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.cl-group{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;transition:border-color .2s,box-shadow .2s}
+.cl-group:hover{border-color:#cfe5f7;box-shadow:var(--shadow-sm)}
+.cl-group h4{margin:0 0 14px;font-size:15px;font-weight:700;color:var(--blue-dark);text-transform:uppercase;letter-spacing:.06em;display:flex;align-items:center;gap:8px}
+.cl-group h4::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.cl-list{list-style:none;padding:0;margin:0}
+.cl-list li{margin:0;padding:7px 0;border-bottom:1px dashed #ecedef;display:flex;align-items:flex-start;gap:11px;font-size:14.5px;line-height:1.5;cursor:pointer;user-select:none}
+.cl-list li:last-child{border-bottom:none}
+.cl-list input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;
+  width:20px;height:20px;border:2px solid #c8d1da;border-radius:6px;
+  margin-top:1px;cursor:pointer;position:relative;transition:background .15s,border-color .15s;
+}
+.cl-list input[type=checkbox]:checked{background:var(--blue);border-color:var(--blue)}
+.cl-list input[type=checkbox]:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:800;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);line-height:1}
+.cl-list li:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.cl-reset{margin-top:20px;text-align:right}
+.cl-reset button{background:transparent;border:1px solid var(--line);color:var(--muted);font-size:12px;padding:6px 14px;border-radius:30px;cursor:pointer;font-family:inherit;font-weight:600;transition:all .2s}
+.cl-reset button:hover{color:var(--blue);border-color:var(--blue)}
+.check-item{
+  background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+  display:flex;align-items:flex-start;gap:12px;font-size:14.5px;line-height:1.5;
+  cursor:pointer;user-select:none;transition:border-color .2s,box-shadow .2s;
+}
+.check-item:hover{border-color:#b9daf2;box-shadow:var(--shadow-sm)}
+.check-item input[type=checkbox]{
+  appearance:none;-webkit-appearance:none;flex:0 0 auto;width:21px;height:21px;
+  border:2px solid #9babb8;border-radius:6px;margin-top:1px;cursor:pointer;position:relative;
+}
+.check-item input[type=checkbox]:checked{background:#0b6eae;border-color:#0b6eae}
+.check-item input[type=checkbox]:checked::after{content:"✓";color:#fff;font-size:14px;font-weight:800;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);line-height:1}
+.check-item:has(input:checked) span{color:var(--muted);text-decoration:line-through}
+.checklist-reset{margin:12px 0 0;background:#fff;border:1px solid #b8c2ca;color:#4e5962;font:600 13px/1.2 inherit;padding:9px 15px;border-radius:30px;cursor:pointer}
+.checklist-reset:hover{color:#0b6eae;border-color:#0b6eae}
+@media(max-width:780px){.checklist{grid-template-columns:1fr}}
+
+/* FAQ */
+.faq{margin:30px 0 0;display:grid;gap:12px}
+.faq details{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:0;overflow:hidden;transition:border-color .2s,box-shadow .2s}
+.faq details[open]{border-color:#cfe5f7;box-shadow:var(--shadow-sm)}
+.faq summary{
+  list-style:none;cursor:pointer;padding:22px 26px;
+  font-weight:600;font-size:16.5px;color:#1a1a1a;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"";flex:0 0 auto;width:28px;height:28px;border-radius:50%;
+  background:var(--blue-soft);background-image:linear-gradient(45deg,transparent 45%,var(--blue) 45%,var(--blue) 55%,transparent 55%);
+  transition:transform .25s,background .2s;
+}
+.faq details[open] summary::after{transform:rotate(45deg);background-image:linear-gradient(45deg,transparent 45%,var(--blue-dark) 45%,var(--blue-dark) 55%,transparent 55%)}
+.faq__body{padding:0 26px 24px;color:#3a3a3a;font-size:15.5px;line-height:1.65}
+
+/* Pull-quote / note */
+.note-card{
+  margin:28px 0;padding:22px 26px;border-radius:var(--radius);
+  background:linear-gradient(135deg,#fff 0%,#f5fbfe 100%);
+  border:1px solid #d8eaf7;display:flex;gap:16px;align-items:flex-start;
+}
+.note-card__icon{flex:0 0 auto;width:38px;height:38px;border-radius:10px;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:800;font-size:18px}
+.note-card p{margin:0;font-size:15px;line-height:1.6;color:#2a2a2a}
+
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{
+  outline:3px solid #0b6eae;outline-offset:4px;
+}
+.topbar__cta,.cta__btn{background:#0b6eae}
+
+/* CTA */
+.cta-section{margin:60px 0 0;padding:0 24px}
+.cta{
+  max-width:var(--max);margin:0 auto;
+  background:linear-gradient(135deg,#0a0e12 0%,#15344a 100%);
+  border-radius:24px;padding:54px 56px;color:#fff;
+  display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.cta::before{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;border-radius:50%;background:radial-gradient(circle,rgba(39,148,227,.35) 0%,transparent 70%);pointer-events:none}
+.cta__eyebrow{color:#7ec5f0;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:12px;display:inline-block}
+.cta h2{color:#fff;font-size:clamp(24px,2.6vw,34px);margin:0 0 16px;line-height:1.2}
+.cta h2 em{font-style:normal;color:#7ec5f0}
+.cta p{color:rgba(255,255,255,.78);font-size:15.5px;line-height:1.6;margin:0 0 26px}
+.cta__contacts{display:grid;gap:10px;margin:0 0 24px}
+.cta__contacts a,.cta__contacts div{display:flex;align-items:center;gap:12px;color:#fff;font-size:15.5px}
+.cta__contacts svg{flex:0 0 auto;color:#7ec5f0}
+.cta__btn{
+  display:inline-flex;align-items:center;gap:10px;padding:14px 26px;
+  background:var(--blue);color:#fff;border-radius:30px;font-weight:600;font-size:15px;
+  box-shadow:0 6px 18px rgba(39,148,227,.45);transition:transform .2s,background .2s,box-shadow .2s;
+}
+.cta__btn:hover{background:var(--blue-dark);color:#fff;transform:translateY(-2px);box-shadow:0 10px 24px rgba(39,148,227,.55)}
+.cta__card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px;backdrop-filter:blur(10px)}
+.cta__author{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+.cta__author img{width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.18)}
+.cta__author strong{display:block;color:#fff;font-size:15px}
+.cta__author span{display:block;color:rgba(255,255,255,.6);font-size:12.5px}
+.cta__form{display:grid;gap:10px}
+.cta__form input{
+  width:100%;padding:13px 16px;border-radius:10px;background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.15);color:#fff;font:inherit;font-size:14.5px;
+  transition:background .2s,border-color .2s;
+}
+.cta__form input::placeholder{color:rgba(255,255,255,.45)}
+.cta__form input:focus{outline:none;background:rgba(255,255,255,.12);border-color:var(--blue)}
+.cta__form button{
+  margin-top:4px;padding:13px 18px;border:none;border-radius:10px;
+  background:var(--blue);color:#fff;font:inherit;font-weight:600;font-size:14.5px;cursor:pointer;
+  transition:background .2s;
+}
+.cta__form button:hover{background:var(--blue-dark)}
+.cta__note{font-size:11.5px;color:rgba(255,255,255,.5);margin-top:8px;line-height:1.4}
+@media(max-width:880px){.cta{grid-template-columns:1fr;padding:38px 30px;gap:32px}}
+
+/* Disclaimer */
+.disclaimer{
+  max-width:var(--max);margin:50px auto 0;padding:22px 26px;
+  background:#f7f8fa;border:1px solid #e6e9ec;border-radius:var(--radius);
+  font-size:13px;color:#6a6a6a;line-height:1.55;font-style:italic;
+}
+
+/* Footer */
+.footer{background:var(--footer);color:rgba(255,255,255,.7);padding:38px 24px;margin-top:50px;font-size:13.5px}
+.footer__inner{max-width:var(--max);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.footer img{height:36px;width:auto;filter:invert(1);opacity:.95}
+.footer__info{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center}
+.footer__info strong{color:#fff;font-weight:600}
+.footer__legal{white-space:nowrap}
+
+/* Section helpers */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:60px 0 0}
+
+/* Responsive */
+@media(max-width:640px){
+  .topbar__inner{height:60px}
+  .topbar__logo img{height:32px}
+  .topbar__cta{padding:9px 14px;font-size:13px}
+  .hero__inner{padding:60px 20px 80px}
+  .container,.article,.cta-section{padding-left:20px;padding-right:20px}
+  .article{padding-top:40px}
+  .article__body{font-size:16px}
+  .toc-wrap{margin-top:-30px}
+  .toc{padding:16px 18px;gap:6px 8px}
+  .toc a{font-size:12px;padding:6px 11px}
+  .lead-block{padding:22px 22px;font-size:15.5px}
+  .footer__inner{flex-direction:column;align-items:flex-start;gap:18px}
+  .footer__info{flex-direction:column;align-items:flex-start;gap:6px}
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}
+}
+
+</style>
+<a class="skip-link" href="#main-content">К содержанию статьи</a>
+<header class="topbar"><div class="container topbar__inner">
+<a class="topbar__logo" href="https://www.domoetika.ru/" aria-label="Домоэтика — главная"><img src="https://static.tildacdn.com/tild3934-3635-4732-b866-353862383636/Domoetika_itog_2.png" alt="Домоэтика"></a>
+<nav class="topbar__nav" aria-label="Главное меню"><a href="https://www.domoetika.ru/portfolio">Портфолио</a><a href="https://www.domoetika.ru/novostrojki">Новостройки</a><a href="https://www.domoetika.ru/techdesign">Тех. дизайн</a><a href="https://www.domoetika.ru/blog">Блог</a><a href="https://www.domoetika.ru/kontakty">Контакты</a></nav>
+<a class="topbar__cta" href="tel:+79781121160">+7 (978) 112-11-60</a></div></header>
+<section class="hero" aria-label="Заголовок статьи">
+<div class="hero__media"><img src="https://ivigorko.github.io/domoetika-blog-preview/s-chego-nachat-remont-kvartiry/assets/hero.jpg" alt="План квартиры и образцы материалов перед началом ремонта" width="1672" height="941"></div>
+<div class="hero__inner"><span class="hero__eyebrow">Гайд · 28 августа 2026</span>
+<h1>С чего начать ремонт квартиры:<br><em>пошаговый план</em></h1>
+<p class="hero__lead">От обследования квартиры и технического задания до сметы, договора и контрольных точек. В конце — чек-лист готовности объекта к началу работ.</p>
+<div class="hero__meta"><span>Автор: <a href="https://www.domoetika.ru/kontakty">Павел Савицкий</a></span><span class="dot" aria-hidden="true"></span><span>Основатель компании «Домоэтика»</span><span class="dot" aria-hidden="true"></span><span>≈ 15 мин чтения</span></div></div></section>
+<section><div class="toc-wrap"><nav class="toc" aria-label="Содержание"><span class="toc__label">Содержание</span><a href="#conditions">Исходные условия</a><a href="#brief">Техническое задание</a><a href="#project">Обмеры и проект</a><a href="#budget">Бюджет</a><a href="#contractor">Подрядчик</a><a href="#sequence">Порядок работ</a><a href="#acceptance">Приёмка</a><a href="#checklist">Чек-лист</a><a href="#faq">FAQ</a></nav></div></section>
+<main class="article" id="main-content" tabindex="-1"><div class="article__body"><section><div class="lead-block"><p>Ремонт стоит начинать не с демонтажа и не с покупки плитки. Первый этап — собрать исходные данные: обследовать квартиру, сформулировать задачи, сделать обмеры и проверить ограничения дома. После этого можно готовить проект, считать смету, выбирать подрядчика и согласовывать порядок контроля.</p>
+<p>Такой порядок не гарантирует, что в процессе не появятся новые обстоятельства. Он помогает увидеть решения, которые зависят друг от друга, и не покупать материалы до того, как определены размеры, инженерные точки и последовательность работ.</p>
+<p>Коротко весь путь выглядит так:</p>
+<div class="steps" role="list"><div class="step" role="listitem"><span class="step__num">1</span><h4>обследовать квартиру и собрать документы;</h4></div><div class="step" role="listitem"><span class="step__num">2</span><h4>описать задачи для каждого помещения;</h4></div><div class="step" role="listitem"><span class="step__num">3</span><h4>сделать обмеры и подготовить рабочие схемы;</h4></div><div class="step" role="listitem"><span class="step__num">4</span><h4>составить ведомость работ, смету и график закупок;</h4></div><div class="step" role="listitem"><span class="step__num">5</span><h4>проверить подрядчика и закрепить условия договором;</h4></div><div class="step" role="listitem"><span class="step__num">6</span><h4>определить последовательность работ и точки контроля;</h4></div><div class="step" role="listitem"><span class="step__num">7</span><h4>принимать этапы и сохранять исполнительную документацию.</h4></div></div>
+<p>Ниже разбираем каждый шаг и даём чек-лист, с которым можно свериться до начала демонтажа.</p></div></section><section><figure class="figure"><img src="https://ivigorko.github.io/domoetika-blog-preview/s-chego-nachat-remont-kvartiry/assets/obmery.jpg" alt="Специалист измеряет помещение перед подготовкой проекта ремонта" width="1672" height="941" loading="lazy"><figcaption>Обмеры и фиксация исходного состояния предшествуют проекту и смете.</figcaption></figure>
+<h2 id="conditions"><span class="num">1</span>Обследуйте квартиру и проверьте ограничения</h2>
+<p>Начните с фактического состояния объекта. Одинаковая площадь не означает одинаковый объём ремонта: квартира без отделки, объект с черновой подготовкой и вторичное жильё требуют разного набора работ. Осмотр нужен, чтобы отделить пожелания от технически необходимых действий.</p>
+<h3>Зафиксируйте исходное состояние</h3>
+<p>Сфотографируйте помещения общими планами и отдельно снимите стены, пол, потолок, окна, двери, стояки, щит, вентиляционные решётки и следы возможных протечек. Фото не заменяют акт или заключение специалиста, но помогают сохранить исходную картину и обсуждать конкретные участки без двусмысленности.</p>
+<p>Для квартиры в новостройке проверьте комплект документов от застройщика, состояние ограждающих конструкций и инженерных вводов. Особенности такого объекта подробнее разобраны в материале про <a href="/remont-v-novostrojke">ремонт в новостройке</a>.</p>
+<p>Во вторичном жилье важно понять, что можно сохранить. Иногда ровное на вид покрытие скрывает слабое основание, а старая проводка или трубы ограничивают косметический сценарий. Решение о демонтаже принимают после осмотра, а не по фотографии объявления или общему возрасту дома.</p>
+<h3>Соберите техническую информацию</h3>
+<p>До проектирования запросите или найдите:</p>
+<ul>
+<li>план квартиры и доступный технический паспорт;</li>
+<li>схемы существующих инженерных сетей, если они есть;</li>
+<li>правила управляющей организации для проведения шумных работ;</li>
+<li>порядок отключения стояков, вывоза отходов и использования лифта;</li>
+<li>требования к доступу рабочих на территорию;</li>
+<li>сведения о допустимой электрической мощности;</li>
+<li>условия установки внешних блоков кондиционеров и другого оборудования на фасаде.</li>
+</ul>
+<p>Правила конкретного дома лучше уточнить письменно. Устный ответ сотрудника управляющей организации может оказаться неполным, а режим работ и порядок доступа влияют на календарный план.</p>
+<h3>Определите тип стартовой ситуации</h3>
+<p>Для квартиры без отделки задача начинается с проверки геометрии, инженерных вводов и состава работ застройщика. Здесь особенно важно не считать черновую подготовку готовой только потому, что она формально есть: основания проверяют под требования выбранного финишного покрытия.</p>
+<p>В квартире с отделкой от застройщика сначала решают, какие элементы действительно мешают будущему сценарию. Полный демонтаж не является обязательным по умолчанию. Если покрытие исправно, совместимо с новым решением и не скрывает дефект, его сохранение может сократить объём работ. Решение подтверждают осмотром, а не общим отношением к качеству типовой отделки.</p>
+<p>Во вторичном жилье исходных неизвестных больше. До демонтажа не всегда видно состояние основания под полом, крепление перегородок, трассы проводки и труб. Поэтому в задании и смете отдельно отмечают позиции, которые можно уточнить только после вскрытия. Это честнее, чем включать в договор случайную точную цифру.</p>
+<p>При косметическом ремонте границы тоже нужно определить заранее. Простая замена обоев может затронуть подготовку стен, электрофурнитуру, плинтусы и примыкания к дверям. Если эти сопутствующие работы не учтены, маленькая задача начинает расширяться уже после старта.</p>
+<h3>Отделите ремонт от перепланировки</h3>
+<p>Замена покрытий и оборудования в прежних местах обычно не равна перепланировке. Но изменение границ помещений, устройство или перенос проёмов, а также отдельные изменения инженерных сетей могут относиться к перепланировке или переустройству.</p>
+<p>Если решение меняет конфигурацию квартиры или данные технического паспорта, сначала выясните порядок согласования. Несущие конструкции должен оценивать профильный специалист. Демонтаж до такой проверки создаёт юридический и технический риск: уже выполненные работы может потребоваться вернуть в исходное состояние.</p>
+<h2 id="brief"><span class="num">2</span>Составьте техническое задание на ремонт</h2>
+<p>Техническое задание описывает не стиль интерьера, а то, как квартира должна работать. Оно связывает привычки семьи, планировку, инженерные решения и будущую смету. Чем конкретнее исходные требования, тем меньше решений придётся принимать в спешке на объекте.</p>
+<h3>Опишите сценарий каждого помещения</h3>
+<p>Для каждой комнаты ответьте на одни и те же вопросы:</p>
+<ul>
+<li>кто и как будет пользоваться помещением;</li>
+<li>какая мебель и техника должны разместиться;</li>
+<li>что нужно хранить и где;</li>
+<li>какие сценарии освещения нужны;</li>
+<li>сколько требуется розеток и точек подключения;</li>
+<li>есть ли особые требования к акустике, уборке и износостойкости;</li>
+<li>что остаётся из существующей отделки или оборудования.</li>
+</ul>
+<p>Начинайте с крупных и зависимых решений. Расстановка мебели определяет розетки и свет. Состав сантехники влияет на выводы воды и канализации. Кухонное оборудование связано с электрикой, вентиляцией и высотой рабочих поверхностей. Цвет стен можно выбрать позже, а трассу кабеля после чистовой отделки менять уже трудно.</p>
+<h3>Разделите обязательное и желаемое</h3>
+<p>Составьте два списка. В первый включите решения, без которых квартира не выполняет свою функцию: исправные инженерные системы, необходимое количество спальных мест, хранение, рабочую зону, безопасные проходы. Во второй — улучшения, от которых можно отказаться или которые можно заменить без потери основной функции.</p>
+<p>Такое разделение полезно при расчёте бюджета. Если смета превышает доступную сумму, вы сокращаете второстепенные решения осознанно, а не случайно убираете важную инженерную работу ради заметной отделки.</p>
+<h3>Соберите референсы как требования, а не как коллаж</h3>
+<p>Фотографии интерьеров полезны, если пояснить, что именно в них нравится. Один и тот же кадр может привлекать цветом, светом, расположением мебели или ощущением свободного пространства. Подпишите каждый пример: «нужен рассеянный свет», «важна закрытая система хранения», «подходит спокойная фактура пола».</p>
+<p>Отдельно соберите то, чего в квартире быть не должно. Такой список помогает избежать решений, которые выглядят эффектно на визуализации, но противоречат привычкам семьи: открытых полок при нежелании часто убирать, глянцевых поверхностей в активной зоне, сложного доступа к фильтрам или розеток за неподвижной мебелью.</p>
+<p>Не превращайте референсы в указание скопировать чужой интерьер. Их задача — передать критерии проектировщику и подрядчику. Итоговое решение должно учитывать размеры, освещение, инженерные ограничения и доступные материалы именно вашего объекта.</p>
+<h3>Зафиксируйте границы работ</h3>
+<p>В задании должно быть ясно, какие помещения входят в ремонт, что демонтируется, что сохраняется и кто отвечает за смежные работы. Например, установка кухни, кондиционеров и встроенной мебели может выполняться отдельными компаниями, но их требования нужно учесть в проекте заранее.</p>
+<p>Для поэтапного ремонта особенно важны временные границы: где люди будут жить, как изолировать рабочую зону, сохранятся ли доступ к санузлу и безопасный проход. Такой сценарий возможен, но требует отдельной логистики и защиты уже готовых поверхностей.</p>
+<h3>Назначьте ответственных за решения</h3>
+<p>До начала проектирования договоритесь, кто утверждает решения со стороны заказчика. Если квартирой пользуются несколько членов семьи, разногласия лучше снять до передачи задания строителям. У каждого помещения должен быть один согласованный сценарий, а не несколько противоречащих пожеланий.</p>
+<p>Составьте перечень участников проекта: заказчик, проектировщик, прораб, специалисты по инженерии, поставщики кухни, дверей, кондиционирования и встроенной мебели. Для каждого укажите, какие данные он передаёт и к какой дате. Например, поставщик кухни сообщает требования к электрике и воде до выполнения инженерной разводки, а не после заказа мебели.</p>
+<p>Отдельно определите канал согласований. Важные решения удобно дублировать в одном общем журнале: дата, вопрос, выбранный вариант, кто согласовал, какие чертежи или позиции сметы изменились. Обычная переписка в нескольких чатах быстро теряет контекст, особенно если одинаковый материал обсуждался в разных помещениях.</p>
+<p>Наконец, задайте правило версии. На объекте должен использоваться только актуальный комплект схем с датой или номером редакции. Старые листы убирают из рабочей папки, но сохраняют в архиве. Это простое действие снижает риск, что один специалист выполнит работу по прежней привязке, пока остальные уже ориентируются на обновлённое решение.</p>
+<figure class="figure"><img src="https://ivigorko.github.io/domoetika-blog-preview/s-chego-nachat-remont-kvartiry/assets/project.jpg" alt="Обсуждение планировки квартиры и образцов отделочных материалов" width="1672" height="941" loading="lazy"><figcaption>Рабочие схемы связывают планировку, мебель, инженерию и отделку.</figcaption></figure>
+<h2 id="project"><span class="num">3</span>Сделайте обмеры и подготовьте проект</h2>
+<p>Обмеры переводят общие пожелания в размеры. Проект связывает эти размеры с мебелью, инженерией и отделкой. Масштаб документации зависит от задачи, но начинать закупки и монтаж без согласованных схем рискованно даже при косметическом ремонте.</p>
+<h3>Что измерить</h3>
+<p>Нужны не только длина и ширина комнат. В обмерный план включают:</p>
+<ul>
+<li>высоты и перепады пола и потолка;</li>
+<li>размеры проёмов, простенков, ниш и выступов;</li>
+<li>положение стояков, вентиляции и отопительных приборов;</li>
+<li>существующие электрические точки и щит;</li>
+<li>привязки выводов воды и канализации;</li>
+<li>особенности оконных откосов, подоконников и дверей.</li>
+</ul>
+<p>Сложные инженерные системы и геометрию лучше поручить специалисту. Ошибка в одном размере способна перейти в заказ мебели, раскладку плитки или расположение сантехники.</p>
+<h3>Минимальный комплект схем</h3>
+<p>Даже без декоративной визуализации полезно подготовить:</p>
+<ul>
+<li>обмерный план;</li>
+<li>план после демонтажа и монтажа перегородок, если они меняются;</li>
+<li>расстановку мебели и оборудования с габаритами;</li>
+<li>планы розеток, выключателей и освещения;</li>
+<li>привязки сантехнических точек;</li>
+<li>планы пола и потолка;</li>
+<li>развёртки сложных стен и раскладку плитки;</li>
+<li>ведомость отделочных материалов и оборудования.</li>
+</ul>
+<p>Для типового объекта может быть достаточно рабочего комплекта чертежей. Если планировка, инженерия или отделка сложные, нужен более подробный проект. На странице про <a href="/techdesign">технический дизайн квартиры</a> показан формат документации, ориентированный на работу строителей.</p>
+<h3>Проверьте проект до сметы</h3>
+<p>Перед расчётом пройдите по квартире мысленно. Открываются ли двери и ящики, не пересекаются ли проходы, хватает ли места у мебели, совпадают ли розетки с техникой, доступна ли запорная арматура, можно ли обслуживать оборудование. Полезно проверить и типовые бытовые действия: где поставить пылесос, сушить вещи, заряжать устройства, хранить крупные предметы.</p>
+<p>Проект не должен оставаться набором красивых картинок. Рабочие схемы нужны в масштабе, с размерами, привязками и понятными обозначениями. Все изменения после согласования фиксируют в актуальной версии, чтобы у заказчика, проектировщика и подрядчика был один комплект документов.</p>
+<h3>Согласуйте места стыков заранее</h3>
+<p>Большая часть спорных решений находится не в центре стены, а на границах материалов и зон. До закупок определите высоту и линию примыкания фартука, положение порогов, переходы напольных покрытий, раскладку плитки у углов и сантехники, сопряжение потолка со встроенными шкафами.</p>
+<p>Проверьте открывание дверей рядом с мебелью и выключателями. Уточните толщину будущих слоёв: выравнивание, клей, плитка, подложка и покрытие меняют чистовые размеры. Эти данные влияют на дверные проёмы, заказ кухни, встроенные шкафы и высоту выводов.</p>
+<p>Если часть оборудования выбирается позже, заложите не «примерное место», а допустимый диапазон размеров и требования к подключению. Тогда замена модели не заставит переносить уже выполненную розетку или вывод воды.</p>
+<h2 id="budget"><span class="num">4</span>Рассчитайте бюджет и график закупок</h2>
+<p>Смета отвечает на вопрос, за что платит заказчик. Она становится полезной только после обследования, технического задания и проекта. Ранняя ориентировочная оценка помогает понять масштаб, но не заменяет построчный расчёт конкретного объекта.</p>
+<h3>Разложите бюджет на части</h3>
+<p>Не смешивайте в одной строке всё, что называется ремонтом. Отдельно учитывайте:</p>
+<ul>
+<li>подготовительные и демонтажные работы;</li>
+<li>черновые и инженерные работы;</li>
+<li>чистовую отделку;</li>
+<li>черновые материалы;</li>
+<li>чистовые материалы и оборудование;</li>
+<li>доставку, подъём, хранение и вывоз отходов;</li>
+<li>проектирование и профильные обследования;</li>
+<li>работы сторонних исполнителей;</li>
+<li>резерв на пока не определённые работы.</li>
+</ul>
+<p>Размер резерва нельзя назначить одинаковым для всех квартир. Он зависит от качества обследования и количества неизвестных условий. Во вторичном жилье неопределённость после демонтажа обычно выше, чем в новом объекте с понятными конструкциями. В смете лучше прямо перечислить неизвестные позиции и описать, как они будут оцениваться после вскрытия.</p>
+<h3>Требуйте измеримые позиции</h3>
+<p>Позиция сметы должна содержать понятную работу, объём, единицу измерения, цену и итог. Формулировка «ремонт комнаты» не позволяет проверить состав. Формулировки «подготовка стен под окраску» или «монтаж розеточных механизмов» уже можно сопоставить с проектом и объёмами.</p>
+<p>Сравнивать предложения подрядчиков нужно по одинаковому заданию. Низкий итог может означать не выгоду, а пропущенные работы, другие материалы или иной уровень подготовки основания. Существенные расхождения разбирают построчно: что включено, что исключено, какие объёмы приняты и какие условия могут изменить цену.</p>
+<h3>Определите статус сметы</h3>
+<p>В договоре указывают, является смета твёрдой или приблизительной, а также порядок согласования дополнительных работ. Подтверждённая сторонами смета становится частью договора. Если после демонтажа обнаружилась скрытая проблема, подрядчик должен описать её, предложить решение и согласовать стоимость до выполнения дополнительной работы.</p>
+<p>Не оставляйте доплаты в устной переписке. Минимальный набор для изменения — описание причины, объём, цена, влияние на срок и подтверждение заказчика.</p>
+<h3>Проверьте смету в три прохода</h3>
+<p>В первый проход сопоставьте её с проектом: у каждого решения должна быть работа, а у каждой работы — основание в задании. Так обнаруживаются забытые откосы, подготовка под встроенную мебель, выводы для техники и восстановление участков после монтажа инженерии.</p>
+<p>Во второй проход проверьте единицы и объёмы. Площадь пола не равна площади закупаемого покрытия, но добавочный объём должен объясняться раскладкой и правилами конкретного материала. Количество электрических точек сверяют со схемой, а длины плинтуса — с планом помещений и проёмами.</p>
+<p>В третий проход изучите исключения. Отдельный список «не входит» зачастую важнее красивого итога. Он показывает, кто оплачивает доставку, подъём, расходные материалы, уборку, вывоз отходов, пусконаладку и устранение следов после работ сторонних монтажников.</p>
+<h3>Составьте график закупок</h3>
+<p>Закупать всё одновременно не всегда рационально. Габаритное оборудование с длинным сроком поставки заказывают заранее, но хранят с учётом условий производителя и безопасности объекта. Черновые материалы привязывают к этапам. Чистовую отделку закупают после проверки размеров и утверждения раскладок.</p>
+<p>График закупок должен учитывать дату, ответственную сторону, место приёмки, проверку количества и состояния. Если материал предоставляет заказчик, в договоре фиксируют его наименование, количество и состояние. Подрядчик должен оценить пригодность материала для предусмотренной работы и предупредить о выявленных рисках.</p>
+<figure class="figure"><img src="https://ivigorko.github.io/domoetika-blog-preview/s-chego-nachat-remont-kvartiry/assets/smeta.jpg" alt="Заказчик и специалист обсуждают проект и смету ремонта" width="1672" height="941" loading="lazy"><figcaption>Предложения подрядчиков сравнивают по одному заданию и построчному составу работ.</figcaption></figure>
+<h2 id="contractor"><span class="num">5</span>Выберите подрядчика и закрепите условия договором</h2>
+<p>Портфолио показывает визуальный результат, но не раскрывает организацию работ. Поэтому подрядчика оценивают по документам, процессу и возможности проверить реальные объекты.</p>
+<h3>Что проверить до решения</h3>
+<p>Запросите реквизиты исполнителя, пример договора и сметы, состав команды, порядок ведения объекта и контакты ответственного лица. Уточните, кто выполняет электромонтажные, сантехнические и другие профильные работы, как фиксируются изменения и кто принимает материалы.</p>
+<p>Попросите показать не только готовые интерьеры, но и объект в работе. На нём видны порядок хранения, защита поверхностей, организация инструмента и отношение к документации. Подробный список вопросов собран в материале о том, <a href="/kak-vybrat-podryadchika">как выбрать подрядчика</a>.</p>
+<p>Отзывы полезны как дополнительный сигнал, но не заменяют договор и проверяемый процесс. Один красивый кейс также не доказывает, что команда умеет работать с вашим типом дома, инженерией и уровнем сложности.</p>
+<h3>Признаки, которые требуют дополнительной проверки</h3>
+<p>Отложите решение и запросите пояснения, если исполнитель:</p>
+<ul>
+<li>отказывается дать договор и смету до внесения денег;</li>
+<li>называет окончательную стоимость без проекта или осмотра;</li>
+<li>предлагает начать демонтаж, пока не определены инженерные решения;</li>
+<li>не указывает, кто отвечает за объект и принимает решения;</li>
+<li>обещает согласовать изменения позже, после выполнения работы;</li>
+<li>показывает только визуализации или чужие фотографии без возможности проверить связь с реальными объектами;</li>
+<li>не может объяснить порядок приёмки скрываемых этапов;</li>
+<li>предлагает заменить предусмотренный материал без письменного согласования и проверки совместимости.</li>
+</ul>
+<p>Один такой признак не всегда означает отказ. Например, ориентировочная оценка по площади допустима на раннем знакомстве, если она честно названа предварительной. Проблема начинается, когда ориентир выдают за обязательную конечную цену или используют, чтобы подтолкнуть к быстрому авансу.</p>
+<h3>Что включить в договор</h3>
+<p>В договоре и приложениях должны быть определены:</p>
+<ul>
+<li>точный объект и стороны договора;</li>
+<li>состав и объём работ;</li>
+<li>стоимость и статус сметы;</li>
+<li>начальный, конечный и при необходимости промежуточные сроки;</li>
+<li>порядок оплаты и приёмки этапов;</li>
+<li>правила закупки, передачи и хранения материалов;</li>
+<li>порядок согласования замен и дополнительных работ;</li>
+<li>ответственность сторон;</li>
+<li>гарантийные условия;</li>
+<li>состав документов, которые передаются после завершения.</li>
+</ul>
+<p>Ответственность за нарушение сроков предусмотрена законом; договор может уточнять порядок взаимодействия и устанавливать дополнительные условия. Не заменяйте содержательный договор обещанием «всё решим по ходу». Для ремонта это означает, что важные решения будут приниматься уже после возникновения расходов.</p>
+<h3>Свяжите оплату с проверяемыми этапами</h3>
+<p>График платежей должен соответствовать реальному порядку работ и поставок. У этапа должны быть понятный результат и способ его принять. Например, завершение разводки инженерных сетей можно подтвердить осмотром, исполнительной схемой и актом до того, как коммуникации будут закрыты следующими слоями.</p>
+<p>Условия аванса зависят от договора и закупок. Сам по себе аванс не доказывает недобросовестность, но его назначение должно быть понятно: какие материалы или работы он покрывает и какими документами подтверждается расход.</p>
+<h2 id="sequence"><span class="num">6</span>Составьте последовательность работ и точки контроля</h2>
+<p>Календарный план нужен не только для ответа на вопрос о сроке. Он показывает зависимости: какие решения должны быть готовы до следующего этапа и когда потребуются материалы или специалисты.</p>
+<h3>Базовая логика работ</h3>
+<p>Состав этапов зависит от объекта, но общая последовательность обычно строится так:</p>
+<div class="timeline" role="list"><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 1</span><p>подготовка объекта и защита сохраняемых элементов;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 2</span><p>согласованный демонтаж;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 3</span><p>монтаж перегородок и черновая подготовка;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 4</span><p>прокладка инженерных сетей;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 5</span><p>проверка работ, которые будут скрыты;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 6</span><p>выравнивание и подготовка оснований;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 7</span><p>чистовая отделка;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 8</span><p>установка оборудования, дверей и электрофурнитуры;</p></div><div class="tl-item" role="listitem"><span class="tl-item__stage">Этап 9</span><p>пусконаладка, уборка и приёмка.</p></div></div>
+<p>Это не универсальная технологическая карта. Конкретный порядок определяют проект, материалы и инструкции производителей. Например, отдельные покрытия требуют заданной влажности основания, а монтаж встроенной мебели связан с готовностью стен, пола и инженерных выводов.</p>
+<p>Общий ориентир по длительности разных сценариев вынесен на страницу про <a href="/sroki_remonta">сроки ремонта квартиры</a>, но календарь конкретного объекта составляют только после определения состава работ.</p>
+<h3>Как читать календарный план</h3>
+<p>У каждого этапа должны быть начало, ожидаемый результат, зависимости и ответственная сторона. Отдельно отмечают решения заказчика и поставки, без которых работа остановится. Например, нельзя окончательно привязать сантехнические выводы без выбранного оборудования, а раскладку плитки — без её точного формата.</p>
+<p>Не оценивайте график только по конечной дате. Проверьте, учтены ли технологические паузы, доступность профильных специалистов, приёмка скрываемых работ и исправление замечаний. Если несколько работ идут одновременно, убедитесь, что бригады не мешают друг другу и не повреждают готовые поверхности.</p>
+<p>Полезно отмечать в календаре не только строительные операции, но и решения заказчика: утверждение образца цвета, выбор модели двери, согласование раскладки, приёмку поставки. Для каждого решения задают дату, после которой задержка повлияет на следующие этапы. Такой формат делает ответственность видимой и не позволяет объяснять любой сдвиг одной общей фразой о поставках.</p>
+<p>Актуальный план должен отражать согласованные изменения. Сдвиг одной поставки сам по себе не всегда переносит весь проект: иногда последовательность можно перестроить. Но такое решение принимает ответственный специалист после проверки зависимостей, а не рабочий на месте по принципу «пока сделаем другое».</p>
+<h3>Определите контрольные точки</h3>
+<p>Контролировать нужно результат этапа до того, как он станет недоступен. К таким точкам относятся инженерная разводка, гидроизоляция, подготовка оснований, раскладка плитки и монтаж оборудования. Состав проверки заранее связывают с проектом, договором и применимыми техническими требованиями.</p>
+<p>Для скрываемых работ полезны акты, фото и исполнительные схемы. Фотографии дополняют документы, но не заменяют измерения и заключения профильных специалистов. Проверку электрики, защитных устройств и других инженерных систем поручают квалифицированным исполнителям; бытовой тестер не заменяет требуемые измерения и протоколы.</p>
+<h3>Фиксируйте изменения</h3>
+<p>Если на объекте требуется отступить от проекта, сначала остановите связанную работу. Зафиксируйте причину, новое решение, стоимость, срок и влияние на соседние разделы. После согласования обновите рабочие схемы. Иначе одна устная замена может конфликтовать с мебелью, электрикой или отделкой на следующих этапах.</p>
+<h2 id="acceptance"><span class="num">7</span>Принимайте этапы и собирайте документы</h2>
+<p>Приёмка — это сравнение результата с договором, проектом, сметой и согласованными изменениями. Она начинается не в последний день, а на промежуточных этапах, особенно перед закрытием конструкций.</p>
+<h3>Как оформлять замечания</h3>
+<p>Для каждого замечания укажите помещение, точное место, суть несоответствия и способ проверки. Добавьте фото, если оно помогает увидеть проблему. Срок устранения фиксируют письменно с учётом характера дефекта; он должен быть разумным.</p>
+<p>Видимые недостатки вносят в акт приёмки. Подписание акта не отменяет права заявить скрытые недостатки, обнаруженные позднее, в пределах гарантийного или установленного законом срока. Конкретный порядок зависит от договора и применимых норм, поэтому спорную ситуацию лучше оценивать с юристом по документам объекта.</p>
+<h3>Что сохранить после завершения</h3>
+<p>Соберите в одной папке:</p>
+<ul>
+<li>договор, смету и все согласованные изменения;</li>
+<li>акты выполненных и скрываемых работ;</li>
+<li>актуальные планы инженерных сетей;</li>
+<li>паспорта, инструкции и гарантийные документы на оборудование;</li>
+<li>документы о закупках, если они нужны для гарантии;</li>
+<li>итоговый перечень использованных материалов и цветов.</li>
+</ul>
+<p>Исполнительные схемы пригодятся при обслуживании и следующем ремонте. По ним можно понять, где проходят кабели и трубы, не вскрывая отделку наугад.</p>
+<figure class="figure"><img src="https://ivigorko.github.io/domoetika-blog-preview/s-chego-nachat-remont-kvartiry/assets/start-ready.jpg" alt="Подготовленная к началу ремонта квартира с защищённым полом и материалами" width="1672" height="941" loading="lazy"><figcaption>До старта работ должны быть готовы документы, материалы, доступы и защита объекта.</figcaption></figure>
+<h2 id="checklist"><span class="num">8</span>Чек-лист перед началом ремонта</h2>
+<p>До первого демонтажа проверьте, что готовы:</p>
+<div class="checklist" id="checklist-widget">
+<label class="check-item"><input type="checkbox"><span>фото исходного состояния квартиры;</span></label>
+<label class="check-item"><input type="checkbox"><span>план и точные обмеры;</span></label>
+<label class="check-item"><input type="checkbox"><span>письменные правила дома и доступов;</span></label>
+<label class="check-item"><input type="checkbox"><span>решение по возможной перепланировке и переустройству;</span></label>
+<label class="check-item"><input type="checkbox"><span>техническое задание по каждому помещению;</span></label>
+<label class="check-item"><input type="checkbox"><span>расстановка мебели и оборудования;</span></label>
+<label class="check-item"><input type="checkbox"><span>рабочие схемы электрики и сантехники;</span></label>
+<label class="check-item"><input type="checkbox"><span>ведомость работ и материалов;</span></label>
+<label class="check-item"><input type="checkbox"><span>построчная смета;</span></label>
+<label class="check-item"><input type="checkbox"><span>календарный план и график закупок;</span></label>
+<label class="check-item"><input type="checkbox"><span>договор с подрядчиком и приложениями;</span></label>
+<label class="check-item"><input type="checkbox"><span>порядок согласования дополнительных работ;</span></label>
+<label class="check-item"><input type="checkbox"><span>список контрольных точек и ответственных;</span></label>
+<label class="check-item"><input type="checkbox"><span>защита сохраняемых элементов и план вывоза отходов.</span></label>
+</div>
+<button class="checklist-reset" type="button" id="checklist-reset">Сбросить отметки</button>
+<p>Если по одному из пунктов решения ещё нет, не обязательно останавливать весь проект. Но нельзя начинать связанную работу, пока неизвестность может повлиять на размеры, инженерные точки, стоимость или безопасность.</p></section><section><h2 id="faq"><span class="num">9</span>Частые вопросы</h2><div class="faq"><details><summary>С чего начать ремонт квартиры в первую очередь?</summary><div class="faq__body"><p>С обследования объекта и списка задач. Зафиксируйте состояние квартиры, соберите правила дома, определите, что сохраняется и меняется. После этого делайте обмеры и проект. Покупка чистовых материалов до этих шагов часто приводит к неверному количеству, размерам или несовместимости решений.</p></div></details><details><summary>Что сначала: дизайн-проект или смета?</summary><div class="faq__body"><p>Сначала формируют техническое задание и обмеры, затем рабочий проект, после него — детальную смету. До проекта можно получить ориентировочную оценку, чтобы проверить доступный масштаб. Но построчный расчёт возможен, когда определены объёмы, материалы и инженерные решения.</p></div></details><details><summary>Чем начало ремонта в новостройке отличается от вторичного жилья?</summary><div class="faq__body"><p>В новостройке оценивают качество переданного объекта, состав отделки от застройщика и готовность инженерных вводов. Во вторичном жилье дополнительно решают, что сохранить, а что демонтировать, и проверяют состояние существующих сетей и оснований. В обоих случаях порядок одинаков по логике: обследование, задание, проект, смета и договор.</p></div></details><details><summary>В какой последовательности выполнять ремонтные работы?</summary><div class="faq__body"><p>Сначала готовят объект и выполняют согласованный демонтаж, затем переходят к конструкциям и инженерным сетям, проверяют скрываемые работы, готовят основания и только после этого выполняют чистовую отделку и монтаж оборудования. Точная технологическая последовательность зависит от проекта и выбранных материалов.</p></div></details><details><summary>Можно ли начать ремонт без полного дизайн-проекта?</summary><div class="faq__body"><p>Для простого косметического сценария может быть достаточно обмерного плана, расстановки мебели, схем электрики и перечня отделки. Если меняются перегородки, инженерия, сложные узлы или встроенная мебель, нужен более подробный комплект рабочих чертежей. Визуализация может быть необязательной, но размеры и привязки нужны строителям в любом случае.</p></div></details><details><summary>Как выбрать подрядчика и сравнить сметы?</summary><div class="faq__body"><p>Передайте кандидатам одинаковое задание и проект. Сравнивайте не только итог, но и состав работ, объёмы, материалы, исключения, сроки и порядок приёмки. Проверьте реквизиты, договор, действующие объекты и ответственных специалистов. Неясные или сильно отличающиеся позиции разбирайте до подписания договора.</p></div></details></div></section></div></main>
+<section class="cta-section" id="cta"><div class="cta"><div>
+<span class="cta__eyebrow">Готовы обсудить ваш ремонт?</span><h2>Начните с осмотра объекта и <em>понятного плана</em></h2>
+<p>«Домоэтика» занимается проектированием и ремонтом квартир в Симферополе. Чтобы обсудить состав работ и получить расчёт после осмотра объекта, <a href="/kontakty">свяжитесь с компанией</a>.</p>
+<div class="cta__contacts"><a href="tel:+79781121160">+7 (978) 112-11-60</a><div>г. Симферополь, ул. Севастопольская, 31</div><div>пн–пт 9:00–18:00, сб 10:00–17:00</div></div>
+<a class="cta__btn" href="tel:+79781121160">Позвонить и обсудить проект</a></div>
+<div class="cta__card"><div class="cta__author"><img src="https://optim.tildacdn.com/tild6338-3465-4264-b238-623932303465/-/resize/120x/-/format/webp/1232_ooooplus.png.webp" alt="Павел Савицкий" width="64" height="64" loading="lazy"><div><strong>Павел Савицкий</strong><span>Основатель компании «Домоэтика»</span></div></div><p>Первый разговор нужен, чтобы определить состояние квартиры, состав работ и документы, без которых нельзя переходить к точному расчёту.</p></div>
+</div></section>
+<section><div class="container"><p class="disclaimer">Материал носит исключительно информационно-ознакомительный характер и не является публичной офертой, а также не заменяет профессиональную консультацию специалиста.</p></div></section>
+<footer class="footer"><div class="footer__inner"><img src="https://static.tildacdn.com/tild3934-3635-4732-b866-353862383636/Domoetika_itog_2.png" alt="Домоэтика"><div class="footer__info"><span><strong>Компания «Домоэтика»</strong> © ИП Савицкий Павел Викторович</span><span class="footer__legal">ИНН: 910215187624</span><span class="footer__legal">ОГРНИП: 315910200047738</span></div></div></footer>
+<script>
+document.querySelectorAll('.faq details').forEach(function(d){d.addEventListener('toggle',function(){if(d.open){document.querySelectorAll('.faq details').forEach(function(o){if(o!==d)o.open=false;});}});});
+(function(){var root=document.getElementById('checklist-widget');if(!root)return;var key='domo-checklist-start-remont-v1';var boxes=root.querySelectorAll('input[type=checkbox]');try{var saved=JSON.parse(localStorage.getItem(key)||'{}');boxes.forEach(function(b,i){b.checked=Boolean(saved[i]);});}catch(e){}boxes.forEach(function(){this.addEventListener('change',function(){var state={};boxes.forEach(function(b,i){state[i]=b.checked;});try{localStorage.setItem(key,JSON.stringify(state));}catch(e){}});});var reset=document.getElementById('checklist-reset');if(reset)reset.addEventListener('click',function(){boxes.forEach(function(b){b.checked=false;});try{localStorage.removeItem(key);}catch(e){}});})();
+</script>
