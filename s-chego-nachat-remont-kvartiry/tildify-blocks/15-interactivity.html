@@ -1,0 +1,4 @@
+<script>
+document.querySelectorAll('.faq details').forEach(function(d){d.addEventListener('toggle',function(){if(d.open){document.querySelectorAll('.faq details').forEach(function(o){if(o!==d)o.open=false;});}});});
+(function(){var root=document.getElementById('checklist-widget');if(!root)return;var key='domo-checklist-start-remont-v1';var boxes=root.querySelectorAll('input[type=checkbox]');try{var saved=JSON.parse(localStorage.getItem(key)||'{}');boxes.forEach(function(b,i){b.checked=Boolean(saved[i]);});}catch(e){}boxes.forEach(function(){this.addEventListener('change',function(){var state={};boxes.forEach(function(b,i){state[i]=b.checked;});try{localStorage.setItem(key,JSON.stringify(state));}catch(e){}});});var reset=document.getElementById('checklist-reset');if(reset)reset.addEventListener('click',function(){boxes.forEach(function(b){b.checked=false;});try{localStorage.removeItem(key);}catch(e){}});})();
+</script>

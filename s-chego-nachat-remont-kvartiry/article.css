@@ -116,6 +116,11 @@ blockquote strong{color:var(--blue-dark)}
 .toc a:hover{background:var(--blue);color:#fff}
 
 /* Article layout */
+.article-block{position:relative;background:#fff}
+.article-block + .article-block{border-top:1px solid #eef1f3}
+.article-block .article{padding-top:36px;padding-bottom:44px}
+.article-block--lead .article{padding-top:60px}
+.article-block .article__body > h2:first-child{margin-top:0}
 .article{max-width:var(--max);margin:0 auto;padding:60px 24px 40px;display:grid;grid-template-columns:minmax(0,1fr);gap:0}
 .article__body{max-width:780px;margin:0 auto;font-size:17px;line-height:1.7}
 .article__body h2{margin-top:2.2em;padding-top:.3em;position:relative}

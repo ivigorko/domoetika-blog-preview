@@ -1,0 +1,92 @@
+[
+  {
+    "order": 1,
+    "id": "hero",
+    "selector": "[data-tildify-block=\"hero\"]",
+    "file": "01-hero.html"
+  },
+  {
+    "order": 2,
+    "id": "toc",
+    "selector": "[data-tildify-block=\"toc\"]",
+    "file": "02-toc.html"
+  },
+  {
+    "order": 3,
+    "id": "lead",
+    "selector": "[data-tildify-block=\"lead\"]",
+    "file": "03-lead.html"
+  },
+  {
+    "order": 4,
+    "id": "conditions",
+    "selector": "[data-tildify-block=\"conditions\"]",
+    "file": "04-conditions.html"
+  },
+  {
+    "order": 5,
+    "id": "brief",
+    "selector": "[data-tildify-block=\"brief\"]",
+    "file": "05-brief.html"
+  },
+  {
+    "order": 6,
+    "id": "project",
+    "selector": "[data-tildify-block=\"project\"]",
+    "file": "06-project.html"
+  },
+  {
+    "order": 7,
+    "id": "budget",
+    "selector": "[data-tildify-block=\"budget\"]",
+    "file": "07-budget.html"
+  },
+  {
+    "order": 8,
+    "id": "contractor",
+    "selector": "[data-tildify-block=\"contractor\"]",
+    "file": "08-contractor.html"
+  },
+  {
+    "order": 9,
+    "id": "sequence",
+    "selector": "[data-tildify-block=\"sequence\"]",
+    "file": "09-sequence.html"
+  },
+  {
+    "order": 10,
+    "id": "acceptance",
+    "selector": "[data-tildify-block=\"acceptance\"]",
+    "file": "10-acceptance.html"
+  },
+  {
+    "order": 11,
+    "id": "checklist",
+    "selector": "[data-tildify-block=\"checklist\"]",
+    "file": "11-checklist.html"
+  },
+  {
+    "order": 12,
+    "id": "faq",
+    "selector": "[data-tildify-block=\"faq\"]",
+    "file": "12-faq.html"
+  },
+  {
+    "order": 13,
+    "id": "cta",
+    "selector": "[data-tildify-block=\"cta\"]",
+    "file": "13-cta.html"
+  },
+  {
+    "order": 14,
+    "id": "disclaimer",
+    "selector": "[data-tildify-block=\"disclaimer\"]",
+    "file": "14-disclaimer.html"
+  },
+  {
+    "order": 15,
+    "id": "interactivity",
+    "selector": null,
+    "file": "15-interactivity.html"
+  }
+]
